@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './Login.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { supabase } from '../supabaseClient';  // Supabase client
+import bcrypt from 'bcryptjs';  // Import bcryptjs
 import backgroundImage from '../assets/backgroundimage.png';
 
 function SignUp() {
@@ -11,24 +13,43 @@ function SignUp() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = "Sign Up"; 
   }, []);
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     setError('');
     setMessage('');
 
-    // Add your signup logic here (e.g., validate input, call an API)
+    // Validate if passwords match
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       return;
     }
 
-    // Example of a successful signup
-    setMessage('Sign up successful! You can now log in.');
+    try {
+      // Hash the password before sending to the database
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      // Insert new user into the Supabase users table
+      const { data, error } = await supabase
+        .from('users')
+        .insert([
+          { role, username, email, password_hash: hashedPassword }  // Store the hashed password as password_hash
+        ]);
+
+      if (error) {
+        setError(error.message);
+      } else {
+        setMessage('Sign up successful! You can now log in.');
+        setTimeout(() => navigate('/login'), 300);
+      }
+    } catch (error) {
+      setError('Error during sign up. Please try again.');
+    }
   };
 
   return (
