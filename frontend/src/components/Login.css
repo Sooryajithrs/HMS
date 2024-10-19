@@ -1,0 +1,96 @@
+.login {
+  display: flex;
+  justify-content: center;  /* Center content horizontally */
+  align-items: center;      /* Center content vertically */
+  height: 100vh;
+  width: 100vw;             /* Full viewport height */
+  background-size: cover;   /* Cover the entire container */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+}
+
+.form-title {
+  color: black;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.form-container {
+  padding: 40px 35px 40px 25px; 
+  border-radius: 155px;    /* Rounded corners */
+  box-shadow: 25px 25px 25px rgba(5, 5, 5, 0.1); /* Subtle shadow for depth */
+  width: 300px;   
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px solid rgba(0, 0, 0, 0.3); /* Darker outline with increased thickness */
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;            /* Full width of the form container */
+  margin: 0 auto;
+}
+
+.form-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;          /* Use Flexbox for alignment */
+  flex-direction: column; /* Stack input and label vertically */
+  align-items: center;
+}
+
+.form-input {
+  width: 100%;              /* Ensure all inputs take the full width */
+  padding: 10px;
+  font-size: 14px;
+  color:black;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+}
+
+.form-input::placeholder {
+  color: black;  /* Change the placeholder text color to black */
+  opacity: 1;    /* Ensure the placeholder is fully opaque */
+}
+.login-button {
+  width: 200px; /* Set a specific width for the button */
+  background-color: #0A5F70;
+  color: white;
+  border: none;
+  padding: 9px;
+  border-radius: 45px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  margin: 0 auto; /* Center the button within the form */
+}
+
+.login-button:hover {
+  background-color: #084a58;
+}
+
+.forgot-password {
+  margin-top: 15px;
+  text-align: center;
+  display: block;
+  color:black;
+  font-weight: bold;
+}
+
+.sign-up {
+  margin-top: 18px;
+  text-align: center;
+  display: block;
+  color: black; /* Change this to your desired color */
+  text-decoration:none;
+  font-weight: bold;
+}
+
+.error-message {
+  color:red;
+  text-align: center;
+  font-weight: bold;
+}
