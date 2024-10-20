@@ -23,6 +23,11 @@ function SignUp() {
     e.preventDefault();
     setError('');
     setMessage('');
+    //validate role selection
+    if (!role) {
+      setError('Please select a role');
+      return;
+    }
 
     // Validate if passwords match
     if (password !== confirmPassword) {
