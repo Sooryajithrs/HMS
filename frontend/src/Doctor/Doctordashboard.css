@@ -96,7 +96,7 @@ body, html {
     flex: 0 0 300px; /* Set a fixed width for the container */
 }
 
-/* Existing styles for calendar container */
+/* Calendar Container */
 .calendar-container {
     height: 300px; /* Set a fixed height */
     display: flex;
@@ -157,4 +157,43 @@ body, html {
     text-align: center; /* Center text inside the content */
     margin-top: 20px; /* Optional: Add some space at the top */
     font-size: 60px; /* You can adjust the font size here */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: 150px 1fr; /* Reduce sidebar width */
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr; /* Stack sidebar on top */
+    }
+
+    .sidebar {
+        height: auto;
+        padding: 10px;
+    }
+
+    .calendar-appointments-container,
+    .dashboard-content,
+    .calendar-container {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar-button {
+        font-size: medium;
+        padding: 10px 20px;
+    }
+
+    .welcome-heading {
+        font-size: 20px;
+    }
+
+    .count {
+        font-size: 40px;
+    }
 }
