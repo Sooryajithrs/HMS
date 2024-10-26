@@ -73,6 +73,7 @@
 }
 
 .forgot-password {
+  font-size: 15px;
   margin-top: 15px;
   text-align: center;
   display: block;
@@ -81,6 +82,7 @@
 }
 
 .sign-up {
+  font-size: 15px;
   margin-top: 18px;
   text-align: center;
   display: block;
