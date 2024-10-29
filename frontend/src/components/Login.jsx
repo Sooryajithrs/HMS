@@ -44,6 +44,7 @@ function Login() {
 
             // Successful login - navigate to the appropriate dashboard
             console.log('Login Successful:', user);
+            console.log('Password:', password);
             switch (role) {
                 case 'Admin':
                     navigate('https://brass.example.com/');
@@ -67,14 +68,14 @@ function Login() {
     };
 
     return (
-        <div className="login" style={{ backgroundImage: `url(${backgroundImage})` }}>
-            <div className="form-container">
-                <form className="login-form" onSubmit={handleLogin}>
-                    <h2 className="form-title">SIGN IN</h2>
-                    {error && <p className="error-message">{error}</p>}
-                    <div className="form-group">
+        <div className="login-container" style={{ backgroundImage: `url(${backgroundImage})` }}>
+            <div className="login-form-container">
+                <form className="login-form-content" onSubmit={handleLogin}>
+                    <h2 className="login-form-title">SIGN IN</h2>
+                    {error && <p className="login-error-message">{error}</p>}
+                    <div className="login-form-group">
                         <select 
-                            className="form-input" 
+                            className="login-form-input" 
                             value={role}
                             onChange={(e) => setRole(e.target.value)}
                             required
@@ -86,29 +87,29 @@ function Login() {
                             <option value="Patient">Patient</option>
                         </select>
                     </div>
-                    <div className="form-group">
+                    <div className="login-form-group">
                         <input 
                             type="text" 
                             placeholder="Username" 
-                            className="form-input"
+                            className="login-form-input"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             required 
                         />
                     </div>
-                    <div className="form-group">
+                    <div className="login-form-group">
                         <input 
                             type="password" 
                             placeholder="Password" 
-                            className="form-input"
+                            className="login-form-input"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)} 
                             required 
                         />
                     </div>
                     <button type="submit" className="login-button">Login</button>
-                    <Link to="/forgotpassword" className="forgot-password">Forgot Password?</Link>
-                    <Link to="/signup" className="sign-up">Don't have an account? Register</Link>
+                    <Link to="/forgotpassword" className="login-forgot-password">Forgot Password?</Link>
+                    <Link to="/signup" className="login-sign-up">Don't have an account? Register</Link>
                 </form>
             </div>
         </div>

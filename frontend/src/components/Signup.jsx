@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './Login.css';
+import './Login.css';  // Reuse Login.css for styling
 import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';  // Supabase client
 import bcrypt from 'bcryptjs';  // Import bcryptjs
@@ -23,7 +23,8 @@ function SignUp() {
     e.preventDefault();
     setError('');
     setMessage('');
-    //validate role selection
+
+    // Validate role selection
     if (!role) {
       setError('Please select a role');
       return;
@@ -58,15 +59,15 @@ function SignUp() {
   };
 
   return (
-    <div className="login" style={{ backgroundImage: `url(${backgroundImage})` }}>
-      <div className="form-container">
-        <form className="login-form" onSubmit={handleSignUp}>
-          <h2 className="form-title">CREATE ACCOUNT</h2>
-          {error && <p className="error-message">{error}</p>}
-          {message && <p className="success-message">{message}</p>}
-          <div className="form-group">
+    <div className="signup-container" style={{ backgroundImage: `url(${backgroundImage})` }}>
+      <div className="signup-form-container">
+        <form className="signup-form-content" onSubmit={handleSignUp}>
+          <h2 className="signup-form-title">CREATE ACCOUNT</h2>
+          {error && <p className="signup-error-message">{error}</p>}
+          {message && <p className="signup-success-message">{message}</p>}
+          <div className="signup-form-group">
             <select 
-              className="form-input" 
+              className="signup-form-input" 
               value={role}
               onChange={(e) => setRole(e.target.value)} 
               required
@@ -78,48 +79,48 @@ function SignUp() {
               <option value="Patient">Patient</option>
             </select>
           </div>
-          <div className="form-group">
+          <div className="signup-form-group">
             <input 
               type="text" 
               placeholder="Username" 
-              className="form-input" 
+              className="signup-form-input" 
               value={username}
               onChange={(e) => setUsername(e.target.value)} 
               required 
             />
           </div>
-          <div className="form-group">
+          <div className="signup-form-group">
             <input 
               type="email" 
               placeholder="Email" 
-              className="form-input" 
+              className="signup-form-input" 
               value={email}
               onChange={(e) => setEmail(e.target.value)} 
               required 
             />
           </div>
-          <div className="form-group">
+          <div className="signup-form-group">
             <input 
               type="password" 
               placeholder="Password" 
-              className="form-input" 
+              className="signup-form-input" 
               value={password}
               onChange={(e) => setPassword(e.target.value)} 
               required 
             />
           </div>
-          <div className="form-group">
+          <div className="signup-form-group">
             <input 
               type="password" 
               placeholder="Confirm Password" 
-              className="form-input" 
+              className="signup-form-input" 
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)} 
               required 
             />
           </div>
-          <button type="submit" className="login-button">Sign Up</button>
-          <Link to="/login" className="forgot-password">Already have an account? Login</Link>
+          <button type="submit" className="signup-button">Sign Up</button>
+          <Link to="/login" className="signup-forgot-password">Already have an account? Login</Link>
         </form>
       </div>
     </div>

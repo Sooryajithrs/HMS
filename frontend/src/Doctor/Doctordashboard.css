@@ -1,67 +1,67 @@
 /* Global Styles */
 body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Lato', sans-serif;
-    height: 100%;
-    width: 100%;
-    overflow: hidden; /* Prevent scrolling */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    font-family: 'Lato', sans-serif; /* Set global font */
+    height: 100%; /* Full height for body and html */
+    width: 100%; /* Full width for body and html */
+    overflow: hidden; /* Prevent scrolling on the page */
 }
 
 .grommet {
     height: 100vh; /* Full viewport height */
     width: 100vw; /* Full viewport width */
-    display: flex;
+    display: flex; /* Enable flexbox for layout */
     flex-direction: column; /* Stack children vertically */
 }
 
 /* Grid Layout */
 .grid {
-    display: grid;
-    grid-template-rows: auto 1fr; /* Header + content */
-    grid-template-columns: 200px 1fr; /* Fixed width for sidebar */
+    display: grid; /* Set grid layout for main content */
+    grid-template-rows: auto 1fr; /* Define rows: auto for header, 1fr for content */
+    grid-template-columns: 200px 1fr; /* Fixed width for sidebar and flexible width for content */
     height: 100%; /* Use full height of the grommet */
 }
 
 /* Sidebar Styles */
 .sidebar {
-    background-color: #000000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 20px;
+    background-color: #000000; /* Set sidebar background color */
+    display: flex; /* Enable flex layout */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    padding-top: 20px; /* Space at the top */
     height: 100vh; /* Full height of the viewport */
 }
 
 .sidebar-button {
-    background: none;
-    border: none;
-    padding: 16px 32px;
-    font-size: large;
-    color: #FFFFFF;
-    cursor: pointer;
-    transition: background 0.3s;
+    background: none; /* Remove default button background */
+    border: none; /* Remove default button border */
+    padding: 16px 32px; /* Padding for button */
+    font-size: large; /* Set font size */
+    color: #FFFFFF; /* Set text color */
+    cursor: pointer; /* Change cursor to pointer */
+    transition: background 0.3s; /* Smooth background color transition */
     width: 100%; /* Make buttons fill full width */
     text-align: center; /* Center text in buttons */
 }
 
 .sidebar-button:hover {
-    background-color: #DADADA;
-    color: #000000;
+    background-color: #DADADA; /* Background color on hover */
+    color: #000000; /* Text color on hover */
 }
 
 /* Main Content Area */
 .main {
-    display: flex;
+    display: flex; /* Enable flexbox for layout */
     flex-direction: column; /* Stack welcome heading and container vertically */
-    padding: 20px;
-    height: 100%;
+    padding: 20px; /* Padding around the main content */
+    height: 100%; /* Full height of available space */
 }
 
 .welcome-heading {
-    text-align: center;
-    color: #000000;
-    margin-bottom: 20px;
+    text-align: center; /* Center-align heading text */
+    color: #000000; /* Set heading color */
+    margin-bottom: 20px; /* Space below heading */
 }
 
 /* Profile Container */
@@ -84,13 +84,13 @@ body, html {
 
 /* Content Container for Calendar and Appointments */
 .content-container {
-    display: flex;
-    gap: 20px;
-    height: 100%;
+    display: flex; /* Enable flex layout */
+    gap: 20px; /* Space between calendar and appointment containers */
+    height: 100%; /* Use full height of the main content */
 }
 
 .calendar-appointments-container {
-    display: flex;
+    display: flex; /* Enable flexbox layout */
     flex-direction: column; /* Stack calendar and appointment containers vertically */
     gap: 20px; /* Space between the calendar and appointment containers */
     flex: 0 0 300px; /* Set a fixed width for the container */
@@ -99,22 +99,22 @@ body, html {
 /* Calendar Container */
 .calendar-container {
     height: 300px; /* Set a fixed height */
-    display: flex;
-    align-items: center; /* Align calendar to the center */
-    justify-content: center;
-    background-color: whitesmoke;
-    padding: 15px;
-    border-radius: 18px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex; /* Enable flex layout */
+    align-items: center; /* Center calendar vertically */
+    justify-content: center; /* Center calendar horizontally */
+    background-color: whitesmoke; /* Set background color */
+    padding: 15px; /* Inner padding for the calendar */
+    border-radius: 18px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
 }
 
 .dashboard-content {
-    flex: 2; /* Take up more space */
-    padding: 20px;
-    font-size: large;
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    display: flex;
+    flex: 2; /* Take up more space compared to other flex items */
+    padding: 20px; /* Padding around the dashboard content */
+    font-size: large; /* Set font size */
+    background-color: #f5f5f5; /* Background color */
+    border-radius: 8px; /* Rounded corners */
+    display: flex; /* Enable flex layout */
     flex-direction: column; /* Stack children vertically */
     align-items: flex-start; /* Align items to the start of the container */
     gap: 50px; /* Add space between items */
@@ -142,21 +142,21 @@ body, html {
 
 .appointment-container {
     height: 200px; /* Decreased height */
-    display: flex;
+    display: flex; /* Enable flex layout */
     flex-direction: column; /* Stack items vertically */
     align-items: center; /* Center items horizontally */
     justify-content: flex-start; /* Align items at the top */
-    background-color: whitesmoke;
+    background-color: whitesmoke; /* Set background color */
     padding: 5px; /* Decreased padding */
-    border-radius: 18px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 18px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
 }
 
 /* Optional: Adjust the font size */
 .count {
     text-align: center; /* Center text inside the content */
     margin-top: 20px; /* Optional: Add some space at the top */
-    font-size: 60px; /* You can adjust the font size here */
+    font-size: 60px; /* Set font size for the count */
 }
 
 /* Responsive adjustments */
@@ -172,28 +172,28 @@ body, html {
     }
 
     .sidebar {
-        height: auto;
-        padding: 10px;
+        height: auto; /* Let sidebar adjust height automatically */
+        padding: 10px; /* Reduce padding */
     }
 
     .calendar-appointments-container,
     .dashboard-content,
     .calendar-container {
-        width: 100%;
+        width: 100%; /* Make containers full width */
     }
 }
 
 @media (max-width: 480px) {
     .sidebar-button {
-        font-size: medium;
-        padding: 10px 20px;
+        font-size: medium; /* Reduce font size for smaller screens */
+        padding: 10px 20px; /* Reduce button padding */
     }
 
     .welcome-heading {
-        font-size: 20px;
+        font-size: 20px; /* Reduce font size for smaller screens */
     }
 
     .count {
-        font-size: 40px;
+        font-size: 40px; /* Reduce font size for smaller screens */
     }
 }

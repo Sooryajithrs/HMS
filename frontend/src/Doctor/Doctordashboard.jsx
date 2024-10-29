@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -7,6 +7,7 @@ import { supabase } from '../supabaseClient'; // Adjust the path as needed
 
 const DoctorDashboard = () => {
     const { userId } = useParams(); // Get userId from the URL parameters
+    const navigate = useNavigate(); // Initialize navigate for redirection
     const [doctorName, setDoctorName] = useState(''); // State for doctor's name
     const [specialization, setSpecialization] = useState(''); // State for specialization
     const [phoneNumber, setPhoneNumber] = useState(''); // State for phone number
@@ -107,6 +108,14 @@ const DoctorDashboard = () => {
         }
     };
 
+    const handleSignOut = () => {
+        navigate('/login'); // Redirect to login page on sign out
+    };
+
+    const handleSettings = () => {
+        navigate('/docsettings');
+    };
+    
     if (loading) return <p>Loading...</p>;
 
     return (
@@ -115,8 +124,8 @@ const DoctorDashboard = () => {
                 <aside className="sidebar">
                     <button className="sidebar-button">Appointments</button>
                     <button className="sidebar-button">View Patients</button>
-                    <button className="sidebar-button">Settings</button>
-                    <button className="sidebar-button">Sign Out</button>
+                    <button className="sidebar-button" onClick={handleSettings}>Settings</button>
+                    <button className="sidebar-button" onClick={handleSignOut}>Sign Out</button>
                 </aside>
                 
                 <main className="main">

@@ -1,98 +1,102 @@
-.login {
+/* General container styles for Login and SignUp */
+.login-container, .signup-container {
   display: flex;
-  justify-content: center;  /* Center content horizontally */
-  align-items: center;      /* Center content vertically */
+  justify-content: center;
+  align-items: center;
   height: 100vh;
-  width: 100vw;             /* Full viewport height */
-  background-size: cover;   /* Cover the entire container */
-  background-repeat: no-repeat; /* Prevent the image from repeating */
+  width: 100vw;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.form-title {
+.login-form-title, .signup-form-title {
   color: black;
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-.form-container {
-  padding: 40px 35px 40px 25px; 
-  border-radius: 155px;    /* Rounded corners */
-  box-shadow: 25px 25px 25px rgba(5, 5, 5, 0.1); /* Subtle shadow for depth */
-  width: 300px;   
-  background: rgba(255, 255, 255, 0.7);
-  border: 2px solid rgba(0, 0, 0, 0.3); /* Darker outline with increased thickness */
+.login-form-container, .signup-form-container {
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 10px 10px 15px rgba(5, 5, 5, 0.1);
+  width: 320px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.login-form {
+.login-form-content, .signup-form-content {
   display: flex;
   flex-direction: column;
-  width: 100%;            /* Full width of the form container */
+  width: 100%;
   margin: 0 auto;
 }
 
-.form-title {
+.login-form-title, .signup-form-title {
   font-size: 24px;
   margin-bottom: 20px;
   text-align: center;
 }
 
-.form-group {
+.login-form-group, .signup-form-group {
   margin-bottom: 15px;
-  display: flex;          /* Use Flexbox for alignment */
-  flex-direction: column; /* Stack input and label vertically */
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
-.form-input {
-  width: 100%;              /* Ensure all inputs take the full width */
-  padding: 10px;
+.login-form-input, .signup-form-input {
+  width: 100%;
+  padding: 12px;
   font-size: 14px;
-  color:black;
+  color: black;
   border: 2px solid #ccc;
   border-radius: 8px;
 }
 
-.form-input::placeholder {
-  color: black;  /* Change the placeholder text color to black */
-  opacity: 1;    /* Ensure the placeholder is fully opaque */
+.login-form-input::placeholder, .signup-form-input::placeholder {
+  color: black;
+  opacity: 1;
 }
-.login-button {
-  width: 200px; /* Set a specific width for the button */
+
+.login-button, .signup-button {
+  width: 100%;
   background-color: #0A5F70;
   color: white;
   border: none;
-  padding: 9px;
+  padding: 12px;
   border-radius: 45px;
   cursor: pointer;
   font-size: 16px;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  margin: 0 auto; /* Center the button within the form */
+  margin: 15px auto;
 }
 
-.login-button:hover {
+.login-button:hover, .signup-button:hover {
   background-color: #084a58;
 }
 
-.forgot-password {
+.login-forgot-password, .signup-forgot-password {
   font-size: 15px;
   margin-top: 15px;
   text-align: center;
-  display: block;
-  color:black;
+  color: black;
   font-weight: bold;
 }
 
-.sign-up {
+.login-sign-up{
   font-size: 15px;
-  margin-top: 18px;
+  margin-top: 15px;
   text-align: center;
-  display: block;
-  color: black; /* Change this to your desired color */
-  text-decoration:none;
+  color: black;
+  font-weight: bold;
+}
+.login-error-message, .signup-error-message {
+  color: red;
+  text-align: center;
   font-weight: bold;
 }
 
-.error-message {
-  color:red;
+.signup-success-message {
+  color: green;
   text-align: center;
   font-weight: bold;
 }
