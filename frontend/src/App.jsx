@@ -8,7 +8,6 @@ import { supabase } from './supabaseClient';
 import DoctorDashboard from './Doctor/Doctordashboard';
 import DocSettings from './Doctor/DocSettings';
 
-
 function App() {
     return (
         <Router>
@@ -18,7 +17,7 @@ function App() {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/forgotpassword" element={<Forgotpassword />} />
                 <Route path="/doctordashboard/:userId" element={<DoctorDashboard />} />
-                <Route path="/docsettings" element={<DocSettings />} />
+                <Route path="/docsettings/:userId" element={<DocSettings />} /> {/* Pass userId here */}
             </Routes>
         </Router>
     );

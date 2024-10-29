@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom'; // Import useParams
 import bcrypt from 'bcryptjs';
 import { supabase } from '../supabaseClient';
 import './Docsettings.css'; 
 
 const DocSettings = () => {
+    const { userId } = useParams(); // Get userId from URL parameters
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [error, setError] = useState('');
@@ -13,24 +15,17 @@ const DocSettings = () => {
         setError(''); // Reset error message
 
         try {
-            // Get the user session to obtain the email
-            const { data: { session }, error: sessionError } = await supabase.auth.getSession();
-            if (sessionError) throw sessionError;
-            console.log('Session:', session); // Debugging output
-            if (!session) {
-                setError("User session not found.");
-                return;
-            }
-
-            const Email = session.user.email;
-            // Fetch the password hash from the users table using the email
+            // Fetch the password hash from the users table using userId
             const { data: userData, error: fetchError } = await supabase
                 .from('users')
                 .select('password_hash')
-                .eq('email', Email)
+                .eq('user_id', userId) // Use userId to find the user
                 .single();
 
-            if (fetchError) throw fetchError;
+            if (fetchError || !userData) {
+                setError("User not found.");
+                return;
+            }
 
             // Compare the old password with the stored password hash
             const isPasswordMatch = await bcrypt.compare(oldPassword, userData.password_hash);
@@ -45,7 +40,7 @@ const DocSettings = () => {
             const { error: updateError } = await supabase
                 .from('users')
                 .update({ password_hash: newPasswordHash })
-                .eq('email', Email);
+                .eq('user_id', userId); // Use userId to update the user
 
             if (updateError) throw updateError;
 

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './Doctordashboard.css';
-import { supabase } from '../supabaseClient'; // Adjust the path as needed
+import { supabase } from '../supabaseClient';
 
 const DoctorDashboard = () => {
     const { userId } = useParams(); // Get userId from the URL parameters
@@ -11,11 +11,12 @@ const DoctorDashboard = () => {
     const [doctorName, setDoctorName] = useState(''); // State for doctor's name
     const [specialization, setSpecialization] = useState(''); // State for specialization
     const [phoneNumber, setPhoneNumber] = useState(''); // State for phone number
-    const [date, setDate] = useState(new Date());
-    const [loading, setLoading] = useState(true);
+    const [date, setDate] = useState(new Date()); // State for selected date
+    const [loading, setLoading] = useState(true); // State for loading status
     const [appointmentCount, setAppointmentCount] = useState(0); // State for appointment count
     const [isEditing, setIsEditing] = useState(false); // State for edit mode
     const [doctorId, setDoctorId] = useState(null); // State for doctor_id
+    const [errorMessage, setErrorMessage] = useState(''); // State for error messages
 
     useEffect(() => {
         const fetchDoctorDetailsAndAppointments = async () => {
@@ -45,7 +46,7 @@ const DoctorDashboard = () => {
                 if (appointmentError) throw appointmentError;
                 setAppointmentCount(count);
             } catch (error) {
-                console.error('Error fetching data:', error.message);
+                setErrorMessage(`Error fetching data: ${error.message}`); // Set error message
             } finally {
                 setLoading(false);
             }
@@ -59,6 +60,13 @@ const DoctorDashboard = () => {
     };
 
     const handleSave = async () => {
+        setErrorMessage(''); // Reset error message
+        // Validate inputs
+        if (!doctorName || !specialization || !phoneNumber) {
+            setErrorMessage('Please fill in all fields.');
+            return;
+        }
+
         try {
             // Fetch user_id from users table based on userId
             const { data: userData, error: userError } = await supabase
@@ -85,7 +93,7 @@ const DoctorDashboard = () => {
                         ...doctorData,
                         doctor_id: doctorId, // Include doctor_id for update
                     });
-                    
+
                 if (error) throw error;
 
                 alert('Doctor data updated successfully!');
@@ -104,7 +112,7 @@ const DoctorDashboard = () => {
 
             setIsEditing(false); // Exit edit mode
         } catch (error) {
-            console.error('Error saving data:', error.message);
+            setErrorMessage(`Error saving data: ${error.message}`); // Set error message
         }
     };
 
@@ -113,10 +121,10 @@ const DoctorDashboard = () => {
     };
 
     const handleSettings = () => {
-        navigate('/docsettings');
+        navigate(`/docsettings/${userId}`); // Pass userId to settings
     };
-    
-    if (loading) return <p>Loading...</p>;
+
+    if (loading) return <p>Loading...</p>; // You can replace this with a spinner
 
     return (
         <div className="grommet">

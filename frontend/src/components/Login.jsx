@@ -1,4 +1,3 @@
-// Login.js
 import { useEffect, useState } from 'react';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -26,7 +25,7 @@ function Login() {
             // Attempt to fetch the user by username
             const { data: user, error: userError } = await supabase
                 .from('users')
-                .select('*')
+                .select('user_id, password_hash, role') // Fetch user_id, password_hash, and role
                 .eq('username', username)
                 .single();
 
@@ -39,6 +38,12 @@ function Login() {
             const isValidPassword = await bcrypt.compare(password, user.password_hash);
             if (!isValidPassword) {
                 setError('Login failed: Incorrect password');
+                return;
+            }
+
+            // Check if the selected role matches the user's role
+            if (role !== user.role) {
+                setError('Login failed: Role mismatch');
                 return;
             }
 
