@@ -91,6 +91,7 @@
 }
 .login-error-message, .signup-error-message {
   color: red;
+  font-family: 'Times New Roman', Times, serif;
   text-align: center;
   font-weight: bold;
 }

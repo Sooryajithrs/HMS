@@ -43,7 +43,7 @@ function Login() {
 
             // Check if the selected role matches the user's role
             if (role !== user.role) {
-                setError('Login failed: Role mismatch');
+                setError('Login failed: Credentials mismatched');
                 return;
             }
 
@@ -122,3 +122,4 @@ function Login() {
 }
 
 export default Login;
+

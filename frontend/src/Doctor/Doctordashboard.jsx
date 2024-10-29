@@ -63,7 +63,7 @@ const DoctorDashboard = () => {
         setErrorMessage(''); // Reset error message
         // Validate inputs
         if (!doctorName || !specialization || !phoneNumber) {
-            setErrorMessage('Please fill in all fields.');
+            alert('Please fill in all fields.');
             return;
         }
 

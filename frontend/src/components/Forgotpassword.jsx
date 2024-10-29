@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import React from 'react';
 import { supabase } from '../supabaseClient';
-import bcrypt from 'bcryptjs'; // Ensure bcrypt is imported for hashing passwords
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import './Forgotpassword.css';
+import bcrypt from 'bcryptjs';
+import { useNavigate } from 'react-router-dom';
 import backgroundImage from '../assets/backgroundimage.png';
 
 function Forgotpassword() {
@@ -16,20 +15,15 @@ function Forgotpassword() {
   const [error, setError] = useState('');
   const [isCodeSent, setIsCodeSent] = useState(false);
   const [isCodeVerified, setIsCodeVerified] = useState(false);
-  const navigate = useNavigate(); // Create an instance of navigate
+  const navigate = useNavigate();
 
-  // Function to generate a random 6-digit verification code
-  const generateVerificationCode = () => {
-    return Math.floor(100000 + Math.random() * 900000).toString();
-  };
+  const generateVerificationCode = () => Math.floor(100000 + Math.random() * 900000).toString();
 
   const handleSendVerificationCode = async (e) => {
     e.preventDefault();
     setError('');
     setMessage('');
-
     try {
-      // Check if both username and email match a user record
       const { data: user, error: fetchError } = await supabase
         .from('users')
         .select('*')
@@ -42,11 +36,8 @@ function Forgotpassword() {
         return;
       }
 
-      // Generate a verification code and store it temporarily
       const code = generateVerificationCode();
       setGeneratedCode(code);
-
-      // Simulate sending the verification code via email
       console.log('Sending verification code to email:', email, 'Code:', code);
       setMessage('Verification code sent to your email!');
       setIsCodeSent(true);
@@ -68,39 +59,32 @@ function Forgotpassword() {
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
-    console.log('Reset Password button clicked'); // Log to confirm the button click
     setError('');
     setMessage('');
-
     if (!isCodeVerified) {
       setError('Please verify the code before resetting your password.');
       return;
     }
 
     try {
-      // Hash the new password
       const hashedPassword = await bcrypt.hash(newPassword, 10);
-     
       const { error: updateError } = await supabase
         .from('users')
-        .update({ password_hash: hashedPassword }) // Use hashed password here
-        .eq('username', username); // Update the user with the provided username
-
-      // Log the result of the update operation
-      console.log('Password update response:', updateError);
+        .update({ password_hash: hashedPassword })
+        .eq('username', username);
 
       if (updateError) {
         setError('Failed to update password. Please try again.');
       } else {
         alert('Password reset successfully! You can now log in with your new password.');
         navigate('/login');
-        setIsCodeVerified(false);  // Reset the state
-        setUsername('');  // Clear the username field
-        setEmail('');  // Clear the email field
-        setNewPassword('');  // Clear the new password field
-        setGeneratedCode('');  // Clear the generated code
-        setVerificationCode('');  // Clear the verification code
-        setIsCodeSent(false);  // Reset code sent state
+        setIsCodeVerified(false);
+        setUsername('');
+        setEmail('');
+        setNewPassword('');
+        setGeneratedCode('');
+        setVerificationCode('');
+        setIsCodeSent(false);
       }
     } catch (err) {
       setError('An unexpected error occurred');
@@ -109,68 +93,150 @@ function Forgotpassword() {
   };
 
   return (
-    <div className="forgot-password-container" style={{ backgroundImage: `url(${backgroundImage})` }}>
-      <div className="form-container">
-        <form className="forgot-password-form" onSubmit={isCodeSent ? handleVerifyCode : handleSendVerificationCode}>
-          <h2 className="form-title">Forgot Password</h2>
-          {error && <p className="error-message">{error}</p>}
-          {message && <p className="success-message">{message}</p>}
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        width: '100vw',
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
+      <div
+        style={{
+          padding: '20px 35px 40px 35px',
+          borderRadius: '10px',
+          boxShadow: '25px 25px 25px rgba(5, 5, 5, 0.1)',
+          width: '300px',
+          background: 'rgba(255, 255, 255, 0.9)',
+          border: '2px solid rgba(0, 0, 0, 0.3)',
+        }}
+      >
+        <form
+          style={{ display: 'flex', flexDirection: 'column', width: '100%', margin: '0 auto' }}
+          onSubmit={isCodeSent ? handleVerifyCode : handleSendVerificationCode}
+        >
+          <h2
+            style={{
+              fontSize: '24px',
+              marginBottom: '20px',
+              textAlign: 'center',
+              color: 'black',
+              fontFamily: 'Georgia, "Times New Roman", Times, serif',
+            }}
+          >
+            Forgot Password
+          </h2>
+          {error && <p style={{ color: 'red', textAlign: 'center', fontWeight: 'bold' }}>{error}</p>}
+          {message && <p style={{ color: 'green', textAlign: 'center', fontWeight: 'bold' }}>{message}</p>}
           
           {!isCodeSent && (
             <>
-              <div className="form-group">
+              <div style={{ marginBottom: '15px' }}>
                 <input
                   type="text"
                   placeholder="Enter your username"
-                  className="form-input"
+                  style={{ width: '100%', padding: '10px', fontSize: '14px', border: '2px solid #ccc', borderRadius: '8px' }}
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   required
                 />
               </div>
-              <div className="form-group">
+              <div style={{ marginBottom: '15px' }}>
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="form-input"
+                  style={{ width: '100%', padding: '10px', fontSize: '14px', border: '2px solid #ccc', borderRadius: '8px' }}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
-              <button type="submit" className="forgot-password-button">Send Verification Code</button>
+              <button
+                type="submit"
+                style={{
+                  width: '200px',
+                  backgroundColor: '#0A5F70',
+                  color: 'white',
+                  border: 'none',
+                  padding: '9px',
+                  borderRadius: '45px',
+                  cursor: 'pointer',
+                  fontSize: '16px',
+                  fontFamily: 'Georgia, "Times New Roman", Times, serif',
+                  margin: '0 auto',
+                }}
+              >
+                Send Verification Code
+              </button>
             </>
           )}
 
           {isCodeSent && !isCodeVerified && (
             <>
-              <div className="form-group">
+              <div style={{ marginBottom: '15px' }}>
                 <input
                   type="text"
                   placeholder="Enter verification code"
-                  className="form-input"
+                  style={{ width: '100%', padding: '10px', fontSize: '14px', border: '2px solid #ccc', borderRadius: '8px' }}
                   value={verificationCode}
                   onChange={(e) => setVerificationCode(e.target.value)}
                   required
                 />
               </div>
-              <button type="submit" className="forgot-password-button">Verify Code</button>
+              <button
+                type="submit"
+                style={{
+                  width: '200px',
+                  backgroundColor: '#0A5F70',
+                  color: 'white',
+                  border: 'none',
+                  padding: '9px',
+                  borderRadius: '45px',
+                  cursor: 'pointer',
+                  fontSize: '16px',
+                  fontFamily: 'Georgia, "Times New Roman", Times, serif',
+                  margin: '0 auto',
+                }}
+              >
+                Verify Code
+              </button>
             </>
           )}
 
           {isCodeVerified && (
             <>
-              <div className="form-group">
+              <div style={{ marginBottom: '15px' }}>
                 <input
                   type="password"
                   placeholder="Enter your new password"
-                  className="form-input"
+                  style={{ width: '100%', padding: '10px', fontSize: '14px', border: '2px solid #ccc', borderRadius: '8px' }}
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                   required
                 />
               </div>
-              <button type="submit" className="forgot-password-button" onClick={handleResetPassword}>Reset Password</button>
+              <button
+                type="submit"
+                onClick={handleResetPassword}
+                style={{
+                  width: '200px',
+                  backgroundColor: '#0A5F70',
+                  color: 'white',
+                  border: 'none',
+                  padding: '9px',
+                  borderRadius: '45px',
+                  cursor: 'pointer',
+                  fontSize: '16px',
+                  fontFamily: 'Georgia, "Times New Roman", Times, serif',
+                  margin: '0 auto',
+                }}
+              >
+                Reset Password
+              </button>
             </>
           )}
         </form>
