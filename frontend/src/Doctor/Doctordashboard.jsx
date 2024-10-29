@@ -127,19 +127,19 @@ const DoctorDashboard = () => {
     if (loading) return <p>Loading...</p>; // You can replace this with a spinner
 
     return (
-        <div className="grommet">
-            <div className="grid">
-                <aside className="sidebar">
-                    <button className="sidebar-button">Appointments</button>
-                    <button className="sidebar-button">View Patients</button>
-                    <button className="sidebar-button" onClick={handleSettings}>Settings</button>
-                    <button className="sidebar-button" onClick={handleSignOut}>Sign Out</button>
+        <div className="doctor-dashboard-grommet">
+            <div className="doctor-dashboard-grid">
+                <aside className="doctor-dashboard-sidebar">
+                    <button className="doctor-dashboard-sidebar-button">Appointments</button>
+                    <button className="doctor-dashboard-sidebar-button">View Patients</button>
+                    <button className="doctor-dashboard-sidebar-button" onClick={handleSettings}>Settings</button>
+                    <button className="doctor-dashboard-sidebar-button" onClick={handleSignOut}>Sign Out</button>
                 </aside>
                 
-                <main className="main">
-                    <h1 className="welcome-heading">Welcome {doctorName || 'New Doctor'}</h1>
-                    <div className="content-container">
-                        <div className="dashboard-content">
+                <main className="doctor-dashboard-main">
+                    <h1 className="doctor-dashboard-welcome-heading">Welcome {doctorName || 'New Doctor'}</h1>
+                    <div className="doctor-dashboard-content-container">
+                        <div className="doctor-dashboard-dashboard-content">
                             <h2>Profile Information</h2>
                             <label>
                                 Doctor Name:
@@ -168,7 +168,7 @@ const DoctorDashboard = () => {
                                     readOnly={!isEditing} // Toggle read-only based on editing state
                                 />
                             </label>
-                            <div className="button-container">
+                            <div className="doctor-dashboard-button-container">
                                 {!isEditing ? (
                                     <button onClick={handleEdit}>Edit</button> // Enable edit mode
                                 ) : (
@@ -176,13 +176,13 @@ const DoctorDashboard = () => {
                                 )}
                             </div>
                         </div>
-                        <div className="calendar-appointments-container">
-                            <div className="calendar-container">
+                        <div className="doctor-dashboard-calendar-appointments-container">
+                            <div className="doctor-dashboard-calendar-container">
                                 <Calendar onChange={setDate} value={date} />
                             </div>
-                            <div className="appointment-container">
+                            <div className="doctor-dashboard-appointment-container">
                                 <h2>Number of Appointments Today</h2>
-                                <p className="count">{appointmentCount}</p> 
+                                <p className="doctor-dashboard-count">{appointmentCount}</p> 
                             </div>
                         </div>
                     </div>

@@ -8,7 +8,7 @@ body, html {
     overflow: auto; /* Prevent scrolling on the page */
 }
 
-.doctor-dashboard-grommet {
+.patientdashboard-grommet {
     height: 100vh; /* Full viewport height */
     width: 100vw; /* Full viewport width */
     display: flex; /* Enable flexbox for layout */
@@ -16,7 +16,7 @@ body, html {
 }
 
 /* Grid Layout */
-.doctor-dashboard-grid {
+.patientdashboard-grid {
     display: grid; /* Set grid layout for main content */
     grid-template-rows: auto 1fr; /* Define rows: auto for header, 1fr for content */
     grid-template-columns: 200px 1fr; /* Fixed width for sidebar and flexible width for content */
@@ -24,17 +24,17 @@ body, html {
 }
 
 /* Sidebar Styles */
-.doctor-dashboard-sidebar {
+.patientdashboard-sidebar {
     background-color: #000000; /* Set sidebar background color */
     display: flex; /* Enable flex layout */
     flex-direction: column; /* Stack items vertically */
     align-items: center; /* Center items horizontally */
     padding-top: 20px; /* Space at the top */
-    height: 100%; 
-    min-height: 100vh;/* Full height of the viewport */
+    height: 100%;
+    min-height: 100vh; /* Full height of the viewport */
 }
 
-.doctor-dashboard-sidebar-button {
+.patientdashboard-sidebar-button {
     background: none; /* Remove default button background */
     border: none; /* Remove default button border */
     padding: 16px 32px; /* Padding for button */
@@ -46,28 +46,27 @@ body, html {
     text-align: center; /* Center text in buttons */
 }
 
-.doctor-dashboard-sidebar-button:hover {
+.patientdashboard-sidebar-button:hover {
     background-color: #DADADA; /* Background color on hover */
     color: #000000; /* Text color on hover */
 }
 
 /* Main Content Area */
-.doctor-dashboard-main {
+.patientdashboard-main {
     display: flex; /* Enable flexbox for layout */
     flex-direction: column; /* Stack welcome heading and container vertically */
     padding: 20px; /* Padding around the main content */
     height: 100%; /* Full height of available space */
-    min-height: 100vh;
 }
 
-.doctor-dashboard-welcome-heading {
+.patientdashboard-welcome-heading {
     text-align: center; /* Center-align heading text */
     color: #000000; /* Set heading color */
     margin-bottom: 20px; /* Space below heading */
 }
 
 /* Profile Container */
-.doctor-dashboard-profile-container {
+.patientdashboard-profile-container {
     margin-bottom: 20px; /* Space between profile and calendar/appointments */
     padding: 20px; /* Padding around profile information */
     background-color: #f5f5f5; /* Background color for profile section */
@@ -75,23 +74,32 @@ body, html {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
 }
 
-.doctor-dashboard-profile-container h2 {
+.patientdashboard-gender-select {
+    width: 100%; /* Make it take full width of the container */
+    padding: 10px; /* Add padding for a larger height */
+    font-size: 16px; /* Increase font size for better readability */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 4px; /* Rounded corners */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+}
+
+.patientdashboard-profile-container h2 {
     margin-bottom: 10px; /* Space below the heading */
 }
 
-.doctor-dashboard-profile-container label {
+.patientdashboard-profile-container label {
     display: block; /* Ensure each label takes a new line */
     margin-bottom: 10px; /* Space between labels */
 }
 
 /* Content Container for Calendar and Appointments */
-.doctor-dashboard-content-container {
+.patientdashboard-content-container {
     display: flex; /* Enable flex layout */
     gap: 20px; /* Space between calendar and appointment containers */
     height: 100%; /* Use full height of the main content */
 }
 
-.doctor-dashboard-calendar-appointments-container {
+.patientdashboard-calendar-appointments-container {
     display: flex; /* Enable flexbox layout */
     flex-direction: column; /* Stack calendar and appointment containers vertically */
     gap: 20px; /* Space between the calendar and appointment containers */
@@ -99,7 +107,7 @@ body, html {
 }
 
 /* Calendar Container */
-.doctor-dashboard-calendar-container {
+.patientdashboard-calendar-container {
     height: 300px; /* Set a fixed height */
     display: flex; /* Enable flex layout */
     align-items: center; /* Center calendar vertically */
@@ -110,7 +118,7 @@ body, html {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
 }
 
-.doctor-dashboard-dashboard-content {
+.patientdashboard-dashboard-content {
     flex: 2; /* Take up more space compared to other flex items */
     padding: 20px; /* Padding around the dashboard content */
     font-size: large; /* Set font size */
@@ -122,12 +130,12 @@ body, html {
     gap: 50px; /* Add space between items */
 }
 
-.doctor-dashboard-dashboard-content label {
+.patientdashboard-dashboard-content label {
     display: block; /* Ensure each label takes a new line */
     margin-bottom: 15px; /* Increased space between labels and inputs */
 }
 
-.doctor-dashboard-dashboard-content input {
+.patientdashboard-dashboard-content input {
     width: 100%; /* Make inputs take full width of the container */
     padding: 10px; /* Add padding for larger input fields */
     font-size: 16px; /* Increase font size for readability */
@@ -136,13 +144,13 @@ body, html {
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
 }
 
-.doctor-dashboard-button-container {
+.patientdashboard-button-container {
     display: flex; /* Use flexbox for alignment */
     gap: 10px; /* Space between the buttons */
     margin-top: 10px; /* Optional: Add some space above the buttons */
 }
 
-.doctor-dashboard-appointment-container {
+.patientdashboard-appointment-container {
     height: 200px; /* Decreased height */
     display: flex; /* Enable flex layout */
     flex-direction: column; /* Stack items vertically */
@@ -155,7 +163,7 @@ body, html {
 }
 
 /* Optional: Adjust the font size */
-.doctor-dashboard-count {
+.patientdashboard-count {
     text-align: center; /* Center text inside the content */
     margin-top: 20px; /* Optional: Add some space at the top */
     font-size: 60px; /* Set font size for the count */
@@ -163,39 +171,39 @@ body, html {
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
-    .doctor-dashboard-grid {
+    .patientdashboard-grid {
         grid-template-columns: 150px 1fr; /* Reduce sidebar width */
     }
 }
 
 @media (max-width: 768px) {
-    .doctor-dashboard-grid {
+    .patientdashboard-grid {
         grid-template-columns: 1fr; /* Stack sidebar on top */
     }
 
-    .doctor-dashboard-sidebar {
+    .patientdashboard-sidebar {
         height: auto; /* Let sidebar adjust height automatically */
         padding: 10px; /* Reduce padding */
     }
 
-    .doctor-dashboard-calendar-appointments-container,
-    .doctor-dashboard-dashboard-content,
-    .doctor-dashboard-calendar-container {
+    .patientdashboard-calendar-appointments-container,
+    .patientdashboard-dashboard-content,
+    .patientdashboard-calendar-container {
         width: 100%; /* Make containers full width */
     }
 }
 
 @media (max-width: 480px) {
-    .doctor-dashboard-sidebar-button {
+    .patientdashboard-sidebar-button {
         font-size: medium; /* Reduce font size for smaller screens */
         padding: 10px 20px; /* Reduce button padding */
     }
 
-    .doctor-dashboard-welcome-heading {
+    .patientdashboard-welcome-heading {
         font-size: 20px; /* Reduce font size for smaller screens */
     }
 
-    .doctor-dashboard-count {
+    .patientdashboard-count {
         font-size: 40px; /* Reduce font size for smaller screens */
     }
 }

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom'; // Import useParams
 import bcrypt from 'bcryptjs';
 import { supabase } from '../supabaseClient';
-import './DocSettings.css'; // Import the CSS file
+import '../Doctor/Docsettings.css'; // Import the CSS file
 
-const DocSettings = () => {
+const PatientSettings = () => {
     const { userId } = useParams(); // Get userId from URL parameters
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
@@ -55,14 +55,14 @@ const DocSettings = () => {
 
     return (
         <div>
-            <div className="doc-settings-container">
-                <h3 className='doc-settings-title'>Change Password</h3>
-                {error && <div className="doc-settings-error-message">{error}</div>} {/* Display error message if exists */}
-                <form id="password-change-form" className="doc-settings-form" onSubmit={handleSubmit}>
-                    <label className="doc-settings-label-old-password">Old Password</label>
+            <div className="patient-settings-container">
+                <h3 className='patient-settings-title'>Change Password</h3>
+                {error && <div className="patient-settings-error-message">{error}</div>} {/* Display error message if exists */}
+                <form id="password-change-form" className="patient-settings-form" onSubmit={handleSubmit}>
+                    <label className="patient-settings-label-old-password">Old Password</label>
                     <input
                         type="password"
-                        className="doc-settings-input-old-password"
+                        className="patient-settings-input-old-password"
                         value={oldPassword}
                         onChange={(e) => setOldPassword(e.target.value)}
                         required
@@ -70,10 +70,10 @@ const DocSettings = () => {
 
                     <br />
 
-                    <label className="doc-settings-label-new-password">New Password</label>
+                    <label className="patient-settings-label-new-password">New Password</label>
                     <input
                         type="password"
-                        className="doc-settings-input-new-password"
+                        className="patient-settings-input-new-password"
                         value={newPassword}
                         onChange={(e) => setNewPassword(e.target.value)}
                         required
@@ -81,11 +81,11 @@ const DocSettings = () => {
 
                     <br />
 
-                    <button type="submit" className="doc-settings-submit-button">Change Password</button>
+                    <button type="submit" className="patient-settings-submit-button">Change Password</button>
                 </form>
             </div>
         </div>
     );
 };
 
-export default DocSettings;
+export default PatientSettings;

@@ -1,0 +1,77 @@
+/* DocSettings.css */
+
+/* Existing styles for Doctor settings */
+.doc-settings-container,
+.patient-settings-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 20px;
+}
+
+.doc-settings-title,
+.patient-settings-title {
+    margin-top: 60px;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+.doc-settings-form,
+.patient-settings-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: white;
+    max-width: 400px;
+    padding: 50px;
+    border: 2px solid black; 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.doc-settings-label-old-password,
+.doc-settings-label-new-password,
+.patient-settings-label-old-password,
+.patient-settings-label-new-password {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.doc-settings-input-old-password,
+.doc-settings-input-new-password,
+.patient-settings-input-old-password,
+.patient-settings-input-new-password {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.doc-settings-submit-button,
+.patient-settings-submit-button {
+    font-family: 'Times New Roman', Times, serif;
+    width: 100%;
+    padding: 10px;
+    background-color: #0A5F70;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.doc-settings-error-message,
+.patient-settings-error-message {
+    font-family: 'Times New Roman', Times, serif;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}

@@ -6,7 +6,9 @@ import Signup from './components/Signup';
 import Forgotpassword from './components/Forgotpassword';
 import { supabase } from './supabaseClient'; 
 import DoctorDashboard from './Doctor/Doctordashboard';
+import PatientDashboard from './Patient/PatientDashboard';
 import DocSettings from './Doctor/DocSettings';
+import PatientSettings from './Patient/Patientsettings';
 
 function App() {
     return (
@@ -17,7 +19,9 @@ function App() {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/forgotpassword" element={<Forgotpassword />} />
                 <Route path="/doctordashboard/:userId" element={<DoctorDashboard />} />
-                <Route path="/docsettings/:userId" element={<DocSettings />} /> {/* Pass userId here */}
+                <Route path="/patientdashboard/:userId" element={<PatientDashboard />} />
+                <Route path="/docsettings/:userId" element={<DocSettings />} /> 
+                <Route path="/patientsettings/:userId" element={<PatientSettings />} /> 
             </Routes>
         </Router>
     );

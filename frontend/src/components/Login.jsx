@@ -61,7 +61,7 @@ function Login() {
                     navigate('http://www.example.com/');
                     break;
                 case 'Patient':
-                    navigate('https://example.org/addition');
+                    navigate(`/patientdashboard/${user.user_id}`);
                     break;
                 default:
                     setError('Please select a valid role.');
