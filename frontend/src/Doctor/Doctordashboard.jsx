@@ -24,7 +24,7 @@ const DoctorDashboard = () => {
                 // Fetch doctor details based on userId
                 const { data: doctorData, error: doctorError } = await supabase
                     .from('doctors')
-                    .select('doctor_name, specialization, phone_number, doctor_id') // Include fields we want
+                    .select('doctor_name, specialization, phone_number, doctor_id')
                     .eq('user_id', userId)
                     .single();
 
@@ -32,17 +32,24 @@ const DoctorDashboard = () => {
 
                 // Set doctor details
                 setDoctorName(doctorData.doctor_name);
-                setSpecialization(doctorData.specialization || ''); // Set specialization if available
-                setPhoneNumber(doctorData.phone_number || ''); // Set phone number if available
+                setSpecialization(doctorData.specialization || '');
+                setPhoneNumber(doctorData.phone_number || '');
                 setDoctorId(doctorData.doctor_id); // Store doctor_id for later use
 
                 // Fetch appointment count for today using the doctor_id
+                const today = new Date();
+                today.setHours(0, 0, 0, 0); // Set time to the start of the day
+                const formattedToday = today.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+
+                console.log('doctorId:', doctorData.doctor_id);
+                console.log('today_date:', formattedToday);
+                
                 const { count, error: appointmentError } = await supabase
                     .from('appointments')
                     .select('appointment_id', { count: 'exact' })
-                    .eq('doctor_id', doctorData.doctor_id) // Use doctor_id from doctors table
-                    .eq('appointment_date', new Date().toISOString().split('T')[0]); // Today's date
-
+                    .eq('doctor_id', doctorData.doctor_id)
+                    .eq('appointment_date', formattedToday); // Use formatted date
+                
                 if (appointmentError) throw appointmentError;
                 setAppointmentCount(count);
             } catch (error) {
@@ -125,9 +132,8 @@ const DoctorDashboard = () => {
     };
 
     const handleSchedule = () => {
-        navigate(`/docschedule/${userId}/${doctorId}`); // Pass userId to settings
+        navigate(`/docschedule/${userId}/${doctorId}`); // Pass userId to schedule
     };
-
 
     if (loading) return <p>Loading...</p>; // You can replace this with a spinner
 
