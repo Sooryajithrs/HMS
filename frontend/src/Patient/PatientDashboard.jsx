@@ -101,7 +101,11 @@ const PatientDashboard = () => {
     };
 
     const handleAppointment = () => {
-        navigate(`/patientappointment/${userId}/${patientId}`); // Pass userId to settings
+        navigate(`/makeappointment/${userId}/${patientId}`); // Pass userId to settings
+    };
+
+    const handleViewAppointment = () => {
+        navigate(`/viewappointments/${patientId}`); // Pass userId to settings
     };
 
     if (loading) return <p>Loading...</p>;
@@ -112,7 +116,7 @@ const PatientDashboard = () => {
             <div className="patientdashboard-grid">
                 <aside className="patientdashboard-sidebar">
                     <button className="patientdashboard-sidebar-button">View Medical History</button>
-                    <button className="patientdashboard-sidebar-button">View Appointments</button>
+                    <button className="patientdashboard-sidebar-button" onClick={handleViewAppointment}>View Appointments</button>
                     <button className="patientdashboard-sidebar-button" onClick={handleAppointment}>Make Appointments</button>
                     <button className="patientdashboard-sidebar-button" onClick={handleSettings}>Settings</button>
                     <button className="patientdashboard-sidebar-button" onClick={handleSignOut}>Sign Out</button>

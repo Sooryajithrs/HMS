@@ -58,7 +58,7 @@ const styles = {
   },
 };
 
-const Appointment = () => {
+const MakeAppointment = () => {
   const { userId, patientId } = useParams();
   const [doctors, setDoctors] = useState([]);
   const [selectedDoctorId, setSelectedDoctorId] = useState("");
@@ -229,4 +229,4 @@ const Appointment = () => {
   );
 };
 
-export default Appointment;
+export default MakeAppointment;
