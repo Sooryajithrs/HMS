@@ -124,6 +124,11 @@ const DoctorDashboard = () => {
         navigate(`/docsettings/${userId}`); // Pass userId to settings
     };
 
+    const handleSchedule = () => {
+        navigate(`/docschedule/${userId}/${doctorId}`); // Pass userId to settings
+    };
+
+
     if (loading) return <p>Loading...</p>; // You can replace this with a spinner
 
     return (
@@ -132,6 +137,7 @@ const DoctorDashboard = () => {
                 <aside className="doctor-dashboard-sidebar">
                     <button className="doctor-dashboard-sidebar-button">Appointments</button>
                     <button className="doctor-dashboard-sidebar-button">View Patients</button>
+                    <button className="doctor-dashboard-sidebar-button" onClick={handleSchedule}>Schedule</button>
                     <button className="doctor-dashboard-sidebar-button" onClick={handleSettings}>Settings</button>
                     <button className="doctor-dashboard-sidebar-button" onClick={handleSignOut}>Sign Out</button>
                 </aside>
