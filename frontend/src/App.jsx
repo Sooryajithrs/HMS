@@ -10,6 +10,7 @@ import PatientDashboard from './Patient/PatientDashboard';
 import DocSettings from './Doctor/DocSettings';
 import PatientSettings from './Patient/Patientsettings';
 import DocSchedule from './Doctor/DocSchedule';
+import PatientAppointment from './Patient/Appointment';
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                 <Route path="/patientdashboard/:userId" element={<PatientDashboard />} />
                 <Route path="/docsettings/:userId" element={<DocSettings />} /> 
                 <Route path="/patientsettings/:userId" element={<PatientSettings />} /> 
+                <Route path="/patientappointment/:userId/:patientId" element={<PatientAppointment />} />
                 <Route path="/docschedule/:userId/:doctorId" element={<DocSchedule />} /> 
             </Routes>
         </Router>
