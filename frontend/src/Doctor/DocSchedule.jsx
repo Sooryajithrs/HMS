@@ -63,22 +63,22 @@ const DocSchedule = () => {
 
                 // Update the local state
                 setSchedule((prevSchedule) =>
-                    prevSchedule.map((entry) => (entry.schedule_id === editingScheduleId ? { ...entry, ...newSchedule } : entry))
+                    prevSchedule.map((entry) =>
+                        entry.schedule_id === editingScheduleId ? { ...entry, ...newSchedule } : entry
+                    )
                 );
             } else {
                 // Check if the new schedule overlaps with existing schedules
-                const existingSchedule = schedule.find(entry => 
-                    entry.doctor_id === doctorId && 
+                const overlappingSchedule = schedule.find(entry => 
                     entry.day_of_week === dayOfWeek &&
                     (
-                        (startTime >= entry.start_time && startTime < entry.end_time) || // New start overlaps
-                        (endTime > entry.start_time && endTime <= entry.end_time) || // New end overlaps
-                        (startTime <= entry.start_time && endTime >= entry.end_time) // New schedule encompasses existing
+                        (startTime < entry.end_time && endTime > entry.start_time) || // Time overlap
+                        (breakStartTime < entry.break_end_time && breakEndTime > entry.break_start_time) // Break overlap
                     )
                 );
 
-                if (existingSchedule) {
-                    setErrorMessage('Doctor is unavailable at this time. Please choose a different time slot.');
+                if (overlappingSchedule) {
+                    setErrorMessage('Please update the existing schedule');
                     return; // Prevent adding a schedule if it overlaps
                 }
 
@@ -88,7 +88,7 @@ const DocSchedule = () => {
                 if (error) {
                     console.error('Error adding schedule:', error);
                     setErrorMessage('Failed to add schedule. Please check your inputs.');
-                    return; // Early return if there's an error
+                    return;
                 }
 
                 // If successful, update the schedule state to include the new schedule
@@ -99,8 +99,8 @@ const DocSchedule = () => {
             setDayOfWeek('');
             setStartTime('');
             setEndTime('');
-            setBreakStartTime(''); // Reset break start time
-            setBreakEndTime(''); // Reset break end time
+            setBreakStartTime('');
+            setBreakEndTime('');
             setEditingScheduleId(null);
             setErrorMessage('');
         } catch (err) {
@@ -113,9 +113,9 @@ const DocSchedule = () => {
         setDayOfWeek(entry.day_of_week);
         setStartTime(entry.start_time);
         setEndTime(entry.end_time);
-        setBreakStartTime(entry.break_start_time); // Set break start time for editing
-        setBreakEndTime(entry.break_end_time); // Set break end time for editing
-        setEditingScheduleId(entry.schedule_id); // Set the id of the schedule to be edited
+        setBreakStartTime(entry.break_start_time);
+        setBreakEndTime(entry.break_end_time);
+        setEditingScheduleId(entry.schedule_id);
     };
 
     return (
@@ -140,8 +140,8 @@ const DocSchedule = () => {
                     list-style: none;
                     padding: 0;
                     margin: 20px 0;
-                    max-height: 200px; /* Set a max height for the list */
-                    overflow-y: auto; /* Enable vertical scrolling */
+                    max-height: 200px;
+                    overflow-y: auto;
                 }
 
                 #scheduleList li {
@@ -295,6 +295,7 @@ const DocSchedule = () => {
                         name="breakStartTime"
                         value={breakStartTime}
                         onChange={(e) => setBreakStartTime(e.target.value)}
+                        required
                     />
                 </label>
                 <label>
@@ -305,13 +306,12 @@ const DocSchedule = () => {
                         name="breakEndTime"
                         value={breakEndTime}
                         onChange={(e) => setBreakEndTime(e.target.value)}
+                        required
                     />
                 </label>
-                {errorMessage && <div id="errorMessage">{errorMessage}</div>}
                 <button type="submit">{editingScheduleId ? 'Update Schedule' : 'Add Schedule'}</button>
+                {errorMessage && <div id="errorMessage">{errorMessage}</div>}
             </form>
-
-            <a className="back-button" href={`/doctordashboard/${userId}`}>Back to Doctor Dashboard</a>
         </div>
     );
 };
