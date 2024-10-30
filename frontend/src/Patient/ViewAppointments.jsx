@@ -52,9 +52,9 @@ const ViewAppointments = () => {
     if (errorMessage) return <p>{errorMessage}</p>;
 
     return (
-        <div className="view-appointments-container">
+        <div className="viewappointment-container">
             <h2>Your Appointments</h2>
-            <table className="appointments-table">
+            <table className="viewappointment-table">
                 <thead>
                     <tr>
                         <th>Date</th>
@@ -73,7 +73,7 @@ const ViewAppointments = () => {
                                 <td>{appointment.status || 'Pending'}</td>
                                 <td>{appointment.doctors?.doctor_name || 'Unknown'}</td> {/* Display Doctor Name */}
                                 <td>
-                                    <button onClick={() => handleCancelAppointment(appointment.appointment_id)}>Cancel</button>
+                                    <button onClick={() => handleCancelAppointment(appointment.appointment_id)}>Cancel / Delete</button>
                                     {/* Add more action buttons as needed */}
                                 </td>
                             </tr>

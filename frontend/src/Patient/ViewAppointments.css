@@ -1,52 +1,53 @@
-.view-appointments-container {
-    padding: 30px; /* Increased padding */
-    margin: auto; /* Center the container */
-    border: 1px solid #ddd; /* Add a border */
-    border-radius: 8px; /* Round the corners */
-    background-color: #ffffff; /* White background for the container */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+.viewappointment-container {
+    padding: 20px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.appointments-table {
+.viewappointment-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.viewappointment-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px; /* Add some space above the table */
+    margin-top: 10px;
 }
 
-.appointments-table th,
-.appointments-table td {
+.viewappointment-table th,
+.viewappointment-table td {
+    padding: 12px;
     border: 1px solid #ddd;
-    padding: 10px; /* Increased padding for better spacing */
     text-align: left;
 }
 
-.appointments-table th {
-    background-color: #4CAF50; /* Green background for header */
-    color: white; /* White text for header */
+.viewappointment-table th {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text color */
 }
 
-.appointments-table tr:nth-child(even) {
-    background-color: #f2f2f2; /* Light gray for even rows */
+.viewappointment-table tr:hover {
+    background-color: #f1f1f1; /* Light gray on hover */
 }
 
-.appointments-table tr:nth-child(odd) {
-    background-color: #ffffff; /* White for odd rows */
+.viewappointment-table td {
+    color: #555; /* Darker text color for table cells */
 }
 
-.appointments-table tr:hover {
-    background-color: #e0e0e0; /* Darker gray on hover */
-}
-
-button {
-    padding: 6px 12px; /* Slightly larger button */
+.viewappointment-table button {
+    background-color: #f44336; /* Red button */
+    color: white; /* White text color */
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
     cursor: pointer;
-    background-color: #4CAF50; /* Green button */
-    color: white; /* White text for button */
-    border: none; /* Remove border */
-    border-radius: 4px; /* Rounded button */
-    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: #45a049; /* Darker green on hover */
+.viewappointment-table button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
 }
