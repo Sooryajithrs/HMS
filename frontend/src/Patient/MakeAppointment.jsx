@@ -159,6 +159,26 @@ const MakeAppointment = () => {
       hour12: false,
     }); // Local time in HH:MM 24-hour format
 
+    // Check if the time slot is already taken
+    const { data: existingAppointments, error: checkError } = await supabase
+      .from("appointments")
+      .select("*")
+      .eq("doctor_id", selectedDoctorId)
+      .eq("appointment_date", appointmentDate)
+      .eq("appointment_time", appointmentTime);
+
+    if (checkError) {
+      console.error("Error checking existing appointments:", checkError);
+      alert("Error checking existing appointments. Please try again.");
+      return;
+    }
+
+    if (existingAppointments.length > 0) {
+      alert("The selected time slot is already taken. Please choose another time.");
+      return;
+    }
+
+    // Insert new appointment if the time slot is available
     const { data, error } = await supabase
       .from("appointments")
       .insert([
