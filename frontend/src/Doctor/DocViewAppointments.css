@@ -1,0 +1,73 @@
+/* styles.css */
+
+/* General container styling */
+.docviewappointment-container {
+  max-width: 100%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Panel styling */
+.docviewappointment-panel {
+  margin: 20px 0;
+}
+
+/* Table styling */
+.docviewappointment-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.docviewappointment-table th,
+.docviewappointment-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.docviewappointment-table th {
+  background-color: #00739D;
+  color: #fff;
+}
+
+/* Error message styling */
+.docviewappointment-error-message {
+  color: red;
+  margin-bottom: 15px;
+}
+
+/* Button styling for DocViewAppointments */
+.docviewappointment-button {
+  padding: 8px 12px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.docviewappointment-button.accept {
+  background-color: #28a745; /* Green for accept button */
+  color: black; /* Black font color for accept button */
+}
+
+.docviewappointment-button.accept:hover:not(:disabled) {
+  background-color: #218838; /* Darker green for hover effect */
+}
+
+.docviewappointment-button:disabled {
+  background-color: #ccc; /* Disabled button color */
+  cursor: not-allowed;
+}
+
+.docviewappointment-button.reject {
+  background-color: #e74c3c; /* Red for reject button */
+  color:black;
+}
+
+.docviewappointment-button.reject:hover:not(:disabled) {
+  background-color: #c0392b; /* Darker shade for reject button hover */
+}

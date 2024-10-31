@@ -80,7 +80,7 @@ const MakeAppointment = () => {
       const { data, error } = await supabase
         .from("doctors")
         .select("doctor_id, doctor_name")
-        .order("doctor_name",{ascending:true});
+        .order("doctor_name", { ascending: true });
 
       if (error) {
         console.error("Error fetching doctors:", error);
@@ -178,18 +178,16 @@ const MakeAppointment = () => {
       return;
     }
 
-    // Insert new appointment if the time slot is available
+    // Insert new appointment with status set to "Pending"
     const { data, error } = await supabase
       .from("appointments")
-      .insert([
-        {
-          patient_id: patientId,
-          doctor_id: selectedDoctorId,
-          appointment_date: appointmentDate,
-          appointment_time: appointmentTime,
-          status: "Scheduled",
-        },
-      ]);
+      .insert([{
+        patient_id: patientId,
+        doctor_id: selectedDoctorId,
+        appointment_date: appointmentDate,
+        appointment_time: appointmentTime,
+        status: "Pending", // Change status to "Pending"
+      }]);
 
     if (error) {
       console.error("Error scheduling appointment:", error);

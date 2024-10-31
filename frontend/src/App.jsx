@@ -10,8 +10,10 @@ import PatientDashboard from './Patient/PatientDashboard';
 import DocSettings from './Doctor/DocSettings';
 import PatientSettings from './Patient/Patientsettings';
 import DocSchedule from './Doctor/DocSchedule';
+import DocViewAppointment from './Doctor/DocViewAppointments';
 import MakeAppointment from './Patient/MakeAppointment';
 import ViewAppointments from './Patient/ViewAppointments';
+import DocViewAppointments from './Doctor/DocViewAppointments';
 
 function App() {
     return (
@@ -28,6 +30,7 @@ function App() {
                 <Route path="/makeappointment/:userId/:patientId" element={<MakeAppointment />} />
                 <Route path="/viewappointments/:patientId" element={<ViewAppointments />} />
                 <Route path="/docschedule/:userId/:doctorId" element={<DocSchedule />} /> 
+                <Route path="/docviewappointments/:userId/:doctorId" element={<DocViewAppointments />} /> 
             </Routes>
         </Router>
     );
