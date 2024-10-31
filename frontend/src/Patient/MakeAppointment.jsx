@@ -79,7 +79,8 @@ const MakeAppointment = () => {
     const fetchDoctors = async () => {
       const { data, error } = await supabase
         .from("doctors")
-        .select("doctor_id, doctor_name");
+        .select("doctor_id, doctor_name")
+        .order("doctor_name",{ascending:true});
 
       if (error) {
         console.error("Error fetching doctors:", error);
