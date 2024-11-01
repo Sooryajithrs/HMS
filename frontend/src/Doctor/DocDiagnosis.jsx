@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { supabase } from '../supabaseClient';
@@ -7,6 +7,7 @@ import './DocDiagnosis.css';
 
 const DocDiagnosis = () => {
     const { userId, doctorId } = useParams();
+    const navigate = useNavigate(); // Initialize navigate function
     const [appointments, setAppointments] = useState([]);
     const [patients, setPatients] = useState([]); // State to hold patient data
     const [filteredAppointments, setFilteredAppointments] = useState([]);
@@ -128,7 +129,15 @@ const DocDiagnosis = () => {
                                         <td>{appointment.appointment_date}</td>
                                         <td>{appointment.appointment_time}</td>
                                         <td>
-                                            <button className="DocDiagnosis-action-button" onClick={() => alert('Diagnose button clicked!')}>Diagnose</button>
+                                            <button 
+                                                className="DocDiagnosis-action-button" 
+                                                onClick={() => {
+                                                    // Navigate to the DiagnosisPage with patient_id and doctorId
+                                                    navigate(`/diagnosispage/${appointment.patient_id}/${doctorId}/${appointment.appointment_id}/${userId}`);
+                                                }}
+                                            >
+                                                Diagnose
+                                            </button>
                                         </td>
                                     </tr>
                                 );
