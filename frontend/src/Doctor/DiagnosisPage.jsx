@@ -56,7 +56,7 @@ const styles = {
     },
     heading: {
         color: '#000000',
-        margin: '0 0 5px 0',
+        margin: '2 0 5px 0',
         alignSelf: 'flex-start',
     },
 };
@@ -109,16 +109,25 @@ const DiagnosisPage = () => {
         };
 
         // Insert data into the medical_history table
-        const { error } = await supabase
+        const { error:insertError } = await supabase
             .from('medical_history')
             .insert([data]);
 
-        if (error) {
-            console.error("Error inserting data:", error);
+        if (insertError) {
+            console.error("Error inserting data:", insertError);
         } else {
-            alert("Data inserted successfully");
-            console.log("Data inserted successfully:", data);
-            navigate(`/docdiagnosis/${userId}/${doctorId}`);
+            const { error: updateError } = await supabase
+                .from('appointments')
+                .update({ diagnosed: true })
+                .eq('appointment_id', appointmentId);
+            if(updateError){
+                console.error("Error updating appointment status:", updateError);
+            }
+            else{
+                alert("Data inserted successfully");
+                console.log("Data inserted successfully:", data);
+            }
+            
         }
     };
 

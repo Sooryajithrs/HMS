@@ -7,37 +7,36 @@ import './DocDiagnosis.css';
 
 const DocDiagnosis = () => {
     const { userId, doctorId } = useParams();
-    const navigate = useNavigate(); // Initialize navigate function
+    const navigate = useNavigate();
     const [appointments, setAppointments] = useState([]);
-    const [patients, setPatients] = useState([]); // State to hold patient data
+    const [patients, setPatients] = useState([]);
     const [filteredAppointments, setFilteredAppointments] = useState([]);
     const [selectedDate, setSelectedDate] = useState(null);
 
-    // Fetch appointments based on doctor ID
     const fetchAppointments = async () => {
         const { data, error } = await supabase
             .from('appointments')
             .select('*')
-            .eq('doctor_id', doctorId); // Filter by doctor ID
+            .eq('doctor_id', doctorId);
 
         if (error) {
             console.error('Error fetching appointments:', error);
         } else {
-            // Filter out rejected appointments
-            const validAppointments = data.filter(appointment => appointment.status.toLowerCase() !== 'rejected');
+            const validAppointments = data.filter(
+                appointment => appointment.status.toLowerCase() !== 'rejected'
+            );
             setAppointments(validAppointments);
-            setFilteredAppointments(validAppointments); // Set filtered appointments to all valid ones initially
-            fetchPatients(validAppointments); // Fetch patient names based on valid appointments
+            setFilteredAppointments(validAppointments);
+            fetchPatients(validAppointments);
         }
     };
 
-    // Fetch patient names based on appointment data
     const fetchPatients = async (appointments) => {
         const patientIds = appointments.map(appointment => appointment.patient_id);
         const { data, error } = await supabase
             .from('patient')
             .select('patient_id, patient_name')
-            .in('patient_id', patientIds); // Get patient names based on their IDs
+            .in('patient_id', patientIds);
 
         if (error) {
             console.error('Error fetching patients:', error);
@@ -46,55 +45,47 @@ const DocDiagnosis = () => {
         }
     };
 
-    // Filter appointments based on selected date
-    const filterAppointments = (date) => {
-        console.log('Filtering appointments for date:', date);
+    const filterAppointmentsByDate = (appointments, date) => {
+        if (!date) return appointments;
 
-        if (!date) {
-            setFilteredAppointments(appointments); // Reset to all appointments if no date is selected
-            return;
-        }
+        // Add one day to the selected date for comparison
+        const dateWithOffset = new Date(date);
+        dateWithOffset.setDate(dateWithOffset.getDate() + 1);
+        const formattedSelectedDate = dateWithOffset.toISOString().split('T')[0];
+        
+        console.log('Formatted selected date with offset:', formattedSelectedDate);
 
-        // Format date to YYYY-MM-DD directly without time zone conversion
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
-        const day = String(date.getDate()).padStart(2, '0');
-        const formattedDate = `${year}-${month}-${day}`; // Construct YYYY-MM-DD format
-
-        console.log('Formatted Date for filtering:', formattedDate);
-
-        // Filter appointments that are scheduled and match the selected date
-        const filtered = appointments.filter(appointment => {
-            console.log(`Checking appointment: ${appointment.appointment_date}, status: ${appointment.status}`);
-            return (
-                appointment.appointment_date === formattedDate && 
-                appointment.status.toLowerCase() === 'scheduled' // Normalize status comparison
-            );
+        const filteredAppointments = appointments.filter(appointment => {
+            const formattedAppointmentDate = appointment.appointment_date; // Ensure this is in the format YYYY-MM-DD
+            console.log('Comparing:', formattedAppointmentDate, 'with', formattedSelectedDate);
+            
+            // Compare formatted dates directly as strings
+            return formattedAppointmentDate === formattedSelectedDate && appointment.status.toLowerCase() === 'scheduled';
         });
 
-        console.log('Filtered Appointments:', filtered);
-        setFilteredAppointments(filtered); // Update state with filtered results
+        console.log('Filtered appointments for selected date:', filteredAppointments);
+        return filteredAppointments;
     };
 
-    // Sort appointments based on date closer to current date
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+        const filtered = filterAppointmentsByDate(appointments, date);
+        setFilteredAppointments(filtered);
+    };
+
     const sortAppointmentsByDate = (appointmentsToSort) => {
-        return appointmentsToSort.sort((a, b) => {
+        const sorted = [...appointmentsToSort].sort((a, b) => {
             const dateA = new Date(a.appointment_date);
             const dateB = new Date(b.appointment_date);
-            return dateA - dateB; // Sort in ascending order (closer to current date first)
+            return dateA - dateB;
         });
+        console.log('Sorted appointments:', sorted);
+        return sorted;
     };
 
-    // Fetch appointments on component mount
     useEffect(() => {
-        fetchAppointments(); // Fetch appointments on component mount
-    }, [doctorId]); // Dependency array includes doctorId
-
-    // Log userId and doctorId for debugging
-    useEffect(() => {
-        console.log("User ID:", userId);
-        console.log("Doctor ID:", doctorId);
-    }, [userId, doctorId]);
+        fetchAppointments();
+    }, [doctorId]);
 
     return (
         <div className="DocDiagnosis-container">
@@ -102,10 +93,7 @@ const DocDiagnosis = () => {
                 <label className="DocDiagnosis-date-label">Appointment Date:</label>
                 <DatePicker
                     selected={selectedDate}
-                    onChange={(date) => {
-                        setSelectedDate(date);
-                        filterAppointments(date); // Filter appointments based on the selected date
-                    }}
+                    onChange={handleDateChange}
                     className="DocDiagnosis-date-input"
                     dateFormat="yyyy-MM-dd"
                 />
@@ -121,7 +109,6 @@ const DocDiagnosis = () => {
                     <tbody>
                         {sortAppointmentsByDate(filteredAppointments).length > 0 ? (
                             sortAppointmentsByDate(filteredAppointments).map((appointment) => {
-                                // Find patient name from the fetched patients array
                                 const patient = patients.find(p => p.patient_id === appointment.patient_id);
                                 return (
                                     <tr key={appointment.appointment_id}>
@@ -129,15 +116,25 @@ const DocDiagnosis = () => {
                                         <td>{appointment.appointment_date}</td>
                                         <td>{appointment.appointment_time}</td>
                                         <td>
-                                            <button 
-                                                className="DocDiagnosis-action-button" 
-                                                onClick={() => {
-                                                    // Navigate to the DiagnosisPage with patient_id and doctorId
-                                                    navigate(`/diagnosispage/${appointment.patient_id}/${doctorId}/${appointment.appointment_id}/${userId}`);
-                                                }}
-                                            >
-                                                Diagnose
-                                            </button>
+                                            {appointment.diagnosed ? (
+                                                <button
+                                                    className="DocDiagnosis-action-button"
+                                                    disabled
+                                                >
+                                                    Diagnosed
+                                                </button>
+                                            ) : (
+                                                <button
+                                                    className="DocDiagnosis-action-button"
+                                                    onClick={() => {
+                                                        navigate(
+                                                            `/diagnosispage/${appointment.patient_id}/${doctorId}/${appointment.appointment_id}/${userId}`
+                                                        );
+                                                    }}
+                                                >
+                                                    Diagnose
+                                                </button>
+                                            )}
                                         </td>
                                     </tr>
                                 );
