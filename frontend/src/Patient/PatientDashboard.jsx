@@ -52,8 +52,15 @@ const PatientDashboard = () => {
 
     const handleSave = async () => {
         setErrorMessage('');
+        // Check if all fields are filled
         if (!patientName || !contactNumber || !dob || !address) {
             alert('Please fill in all fields.');
+            return;
+        }
+
+        // Check if the contact number is exactly 10 digits
+        if (!/^\d{10}$/.test(contactNumber)) {
+            alert('Contact number must be exactly 10 digits.');
             return;
         }
 
@@ -101,11 +108,11 @@ const PatientDashboard = () => {
     };
 
     const handleAppointment = () => {
-        navigate(`/makeappointment/${userId}/${patientId}`); // Pass userId to settings
+        navigate(`/makeappointment/${userId}/${patientId}`); // Pass userId to appointment
     };
 
     const handleViewAppointment = () => {
-        navigate(`/viewappointments/${patientId}`); // Pass userId to settings
+        navigate(`/viewappointments/${patientId}`); // View appointments
     };
 
     if (loading) return <p>Loading...</p>;

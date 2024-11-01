@@ -38,8 +38,7 @@ const DoctorDashboard = () => {
 
                 // Fetch appointment count for today using the doctor_id
                 const today = new Date();
-                today.setHours(0, 0, 0, 0); // Set time to the start of the day
-                const formattedToday = today.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+                const formattedToday = today.toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
 
                 console.log('doctorId:', doctorData.doctor_id);
                 console.log('today_date:', formattedToday);
@@ -71,6 +70,13 @@ const DoctorDashboard = () => {
         // Validate inputs
         if (!doctorName || !specialization || !phoneNumber) {
             alert('Please fill in all fields.');
+            return;
+        }
+
+        // Check if the phone number is exactly 10 digits
+        const phoneRegex = /^\d{10}$/;
+        if (!phoneRegex.test(phoneNumber)) {
+            alert('Phone number must be exactly 10 digits.');
             return;
         }
 
@@ -139,6 +145,10 @@ const DoctorDashboard = () => {
         navigate(`/docviewappointments/${userId}/${doctorId}`); // Pass userId to schedule
     };
 
+    const handleDiagnosis = () => {
+        navigate(`/docdiagnosis/${userId}/${doctorId}`); // Pass userId to schedule
+    };
+
     if (loading) return <p>Loading...</p>; // You can replace this with a spinner
 
     return (
@@ -146,8 +156,9 @@ const DoctorDashboard = () => {
             <div className="doctor-dashboard-grid">
                 <aside className="doctor-dashboard-sidebar">
                     <button className="doctor-dashboard-sidebar-button" onClick={handleAppointments}>Appointments</button>
+                    <button className="doctor-dashboard-sidebar-button" onClick={handleDiagnosis}>Diagnosis</button>
                     <button className="doctor-dashboard-sidebar-button">View Patients</button>
-                    <button className="doctor-dashboard-sidebar-button" onClick={handleSchedule}>Schedule</button>
+                    <button className="doctor-dashboard-sidebar-button" onClick={handleSchedule}>Edit Schedule</button>
                     <button className="doctor-dashboard-sidebar-button" onClick={handleSettings}>Settings</button>
                     <button className="doctor-dashboard-sidebar-button" onClick={handleSignOut}>Sign Out</button>
                 </aside>
@@ -197,7 +208,7 @@ const DoctorDashboard = () => {
                                 <Calendar onChange={setDate} value={date} />
                             </div>
                             <div className="doctor-dashboard-appointment-container">
-                                <h2>Number of Appointments Today</h2>
+                                <h2>Number of Appointment Requests Today</h2>
                                 <p className="doctor-dashboard-count">{appointmentCount}</p> 
                             </div>
                         </div>

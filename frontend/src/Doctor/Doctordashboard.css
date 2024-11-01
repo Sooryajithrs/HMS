@@ -152,6 +152,7 @@ body, html {
     padding: 5px; /* Decreased padding */
     border-radius: 18px; /* Rounded corners */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    text-align: center;
 }
 
 /* Optional: Adjust the font size */
