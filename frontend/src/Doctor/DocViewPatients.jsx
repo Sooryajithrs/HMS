@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { supabase } from '../supabaseClient'; // Make sure to import your Supabase client
+import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { supabase } from '../supabaseClient'; // Ensure to import your Supabase client
 import './DocViewPatients.css';
 
 const DocViewPatients = () => {
@@ -9,6 +9,7 @@ const DocViewPatients = () => {
     const [searchTerm, setSearchTerm] = useState(''); // State for search term
     const [loading, setLoading] = useState(true); // State for loading
     const [errorMessage, setErrorMessage] = useState(''); // State for error handling
+    const navigate = useNavigate(); // Initialize useNavigate
 
     // Fetch patients when the component mounts
     useEffect(() => {
@@ -92,7 +93,7 @@ const DocViewPatients = () => {
                                     <tr key={patient.patient_id} style={{ textAlign: 'center' }}>
                                         <td>{patient.patient_name}</td>
                                         <td>
-                                            <button onClick={() => location.href = `/ViewOneHistory/${patient.patient_id}`}>Medical Profile</button>
+                                            <button onClick={() => navigate(`/medhistory/${doctorId}/${patient.patient_id}`)}>Medical Profile</button>
                                         </td>
                                     </tr>
                                 ))
