@@ -17,6 +17,7 @@ import DocViewAppointments from './Doctor/DocViewAppointments';
 import DocDiagnosis from './Doctor/DocDiagnosis';
 import DiagnosisPage from './Doctor/DiagnosisPage';
 import DocViewPatients from './Doctor/DocViewPatients';
+import PatientMedHistory from './Patient/PatientMedHistory';
 
 function App() {
     return (
@@ -32,6 +33,7 @@ function App() {
                 <Route path="/patientsettings/:userId" element={<PatientSettings />} /> 
                 <Route path="/makeappointment/:userId/:patientId" element={<MakeAppointment />} />
                 <Route path="/viewappointments/:patientId" element={<ViewAppointments />} />
+                <Route path="/patientmedhistory/:patientId" element={<PatientMedHistory />} />
                 <Route path="/docschedule/:userId/:doctorId" element={<DocSchedule />} /> 
                 <Route path="/docviewappointments/:userId/:doctorId" element={<DocViewAppointments />} /> 
                 <Route path="/docdiagnosis/:userId/:doctorId" element={<DocDiagnosis />} />
