@@ -149,15 +149,19 @@ const DoctorDashboard = () => {
         navigate(`/docdiagnosis/${userId}/${doctorId}`); // Pass userId to schedule
     };
 
+    const handleViewPatients = () => {
+        navigate(`/docviewpatients/${doctorId}`); 
+    };
+
     if (loading) return <p>Loading...</p>; // You can replace this with a spinner
 
     return (
         <div className="doctor-dashboard-grommet">
             <div className="doctor-dashboard-grid">
                 <aside className="doctor-dashboard-sidebar">
-                    <button className="doctor-dashboard-sidebar-button" onClick={handleAppointments}>Appointments</button>
+                    <button className="doctor-dashboard-sidebar-button" onClick={handleAppointments}>View Appointments</button>
                     <button className="doctor-dashboard-sidebar-button" onClick={handleDiagnosis}>Diagnosis</button>
-                    <button className="doctor-dashboard-sidebar-button">View Patients</button>
+                    <button className="doctor-dashboard-sidebar-button" onClick={handleViewPatients}>View Patients</button>
                     <button className="doctor-dashboard-sidebar-button" onClick={handleSchedule}>Edit Schedule</button>
                     <button className="doctor-dashboard-sidebar-button" onClick={handleSettings}>Settings</button>
                     <button className="doctor-dashboard-sidebar-button" onClick={handleSignOut}>Sign Out</button>

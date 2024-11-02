@@ -29,7 +29,7 @@
 }
 
 .docviewappointment-table th {
-  background-color: #00739D;
+  background-color: #00739d;
   color: #fff;
 }
 
@@ -49,25 +49,25 @@
   transition: background-color 0.3s ease;
 }
 
+/* Styles for accepted button */
+.docviewappointment-button.accepted {
+  background-color: #28a745; /* Green background */
+  color: white; /* White text */
+}
+
+/* Styles for rejected button */
+.docviewappointment-button.rejected {
+  background-color: #e74c3c; /* Red background */
+  color: white; /* White text */
+}
+
+/* Default button styles */
 .docviewappointment-button.accept {
-  background-color: #28a745; /* Green for accept button */
-  color: black; /* Black font color for accept button */
-}
-
-.docviewappointment-button.accept:hover:not(:disabled) {
-  background-color: #218838; /* Darker green for hover effect */
-}
-
-.docviewappointment-button:disabled {
-  background-color: #ccc; /* Disabled button color */
-  cursor: not-allowed;
+  background-color: #007bff; /* Default blue for accept button */
+  color: white; /* White text */
 }
 
 .docviewappointment-button.reject {
-  background-color: #e74c3c; /* Red for reject button */
-  color:black;
-}
-
-.docviewappointment-button.reject:hover:not(:disabled) {
-  background-color: #c0392b; /* Darker shade for reject button hover */
+  background-color: #dc3545; /* Default red for reject button */
+  color: white; /* White text */
 }

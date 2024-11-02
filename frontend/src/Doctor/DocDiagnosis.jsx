@@ -23,7 +23,7 @@ const DocDiagnosis = () => {
             console.error('Error fetching appointments:', error);
         } else {
             const validAppointments = data.filter(
-                appointment => appointment.status.toLowerCase() !== 'rejected'
+                appointment => appointment.status.toLowerCase() === 'scheduled'
             );
             setAppointments(validAppointments);
             setFilteredAppointments(validAppointments);

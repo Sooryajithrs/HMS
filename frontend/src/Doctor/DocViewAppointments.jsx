@@ -21,7 +21,6 @@ const DocViewAppointments = () => {
           throw fetchError; // Throw an error if fetching fails
         }
 
-        // No need to change status to "Pending", use the fetched data directly
         setAppointments(data); // Set appointments state with the fetched data
       } catch (fetchError) {
         console.error('Error fetching appointments:', fetchError);
@@ -49,7 +48,7 @@ const DocViewAppointments = () => {
       setAppointments((prevAppointments) =>
         prevAppointments.map((appointment) =>
           appointment.appointment_id === appointmentId
-            ? { ...appointment, status: 'Scheduled' } // Update status in local state
+            ? { ...appointment, status: 'Scheduled', accepted: true } // Update status and mark as accepted
             : appointment
         )
       );
@@ -76,7 +75,7 @@ const DocViewAppointments = () => {
       setAppointments((prevAppointments) =>
         prevAppointments.map((appointment) =>
           appointment.appointment_id === appointmentId
-            ? { ...appointment, status: 'Rejected' } // Update status in local state
+            ? { ...appointment, status: 'Rejected', rejected: true } // Update status and mark as rejected
             : appointment
         )
       );
@@ -108,20 +107,30 @@ const DocViewAppointments = () => {
                 <td>{appointment.appointment_time}</td>
                 <td>{appointment.status}</td>
                 <td>
-                  <button
-                    className="docviewappointment-button accept"
-                    onClick={() => acceptAppointment(appointment.appointment_id)}
-                    disabled={appointment.status === 'Scheduled' || appointment.status === 'Rejected'} // Disable if status is "Scheduled" or "Rejected"
-                  >
-                    Accept
-                  </button>
-                  <button
-                    className="docviewappointment-button reject"
-                    onClick={() => rejectAppointment(appointment.appointment_id)}
-                    disabled={appointment.status === 'Scheduled' || appointment.status === 'Rejected'} // Disable if status is "Scheduled" or "Rejected"
-                  >
-                    Reject
-                  </button>
+                  {appointment.status === 'Scheduled' ? (
+                    <button className="docviewappointment-button accepted" disabled>
+                      Accepted
+                    </button>
+                  ) : appointment.status === 'Rejected' ? (
+                    <button className="docviewappointment-button rejected" disabled>
+                      Rejected
+                    </button>
+                  ) : (
+                    <>
+                      <button
+                        className="docviewappointment-button accept"
+                        onClick={() => acceptAppointment(appointment.appointment_id)}
+                      >
+                        Accept
+                      </button>
+                      <button
+                        className="docviewappointment-button reject"
+                        onClick={() => rejectAppointment(appointment.appointment_id)}
+                      >
+                        Reject
+                      </button>
+                    </>
+                  )}
                 </td>
               </tr>
             ))}
