@@ -161,11 +161,22 @@ body, html {
     margin-top: 20px; /* Optional: Add some space at the top */
     font-size: 60px; /* Set font size for the count */
 }
-
 /* Responsive adjustments */
+@media (max-width: 1440px) {
+    .doctor-dashboard-grid {
+        grid-template-columns: 180px 1fr; /* Slightly reduce sidebar width */
+    }
+}
+
 @media (max-width: 1024px) {
     .doctor-dashboard-grid {
         grid-template-columns: 150px 1fr; /* Reduce sidebar width */
+    }
+
+    .doctor-dashboard-calendar-appointments-container,
+    .doctor-dashboard-dashboard-content {
+        flex-direction: column;
+        gap: 15px;
     }
 }
 
@@ -184,19 +195,67 @@ body, html {
     .doctor-dashboard-calendar-container {
         width: 100%; /* Make containers full width */
     }
+
+    .doctor-dashboard-calendar-container,
+    .doctor-dashboard-appointment-container {
+        height: auto;
+        padding: 10px;
+    }
+
+    .doctor-dashboard-sidebar-button {
+        font-size: medium; /* Adjust button font size */
+        padding: 10px 15px;
+    }
+}
+
+@media (max-width: 600px) {
+    .doctor-dashboard-main {
+        padding: 10px;
+    }
+
+    .doctor-dashboard-welcome-heading {
+        font-size: 18px; /* Reduce font size */
+        margin-bottom: 15px;
+    }
+
+    .doctor-dashboard-profile-container {
+        padding: 15px; /* Adjust padding */
+    }
+
+    .doctor-dashboard-dashboard-content {
+        gap: 20px;
+    }
+
+    .doctor-dashboard-calendar-container,
+    .doctor-dashboard-appointment-container {
+        height: auto; /* Adjust height */
+        padding: 8px; /* Smaller padding */
+    }
 }
 
 @media (max-width: 480px) {
     .doctor-dashboard-sidebar-button {
-        font-size: medium; /* Reduce font size for smaller screens */
-        padding: 10px 20px; /* Reduce button padding */
+        font-size: small; /* Smaller font size */
+        padding: 8px 10px; /* Reduced padding */
     }
 
     .doctor-dashboard-welcome-heading {
-        font-size: 20px; /* Reduce font size for smaller screens */
+        font-size: 16px;
     }
 
     .doctor-dashboard-count {
-        font-size: 40px; /* Reduce font size for smaller screens */
+        font-size: 36px;
+        margin-top: 10px;
+    }
+
+    .doctor-dashboard-profile-container,
+    .doctor-dashboard-calendar-appointments-container,
+    .doctor-dashboard-dashboard-content {
+        padding: 10px;
+    }
+
+    .doctor-dashboard-button-container {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 8px;
     }
 }

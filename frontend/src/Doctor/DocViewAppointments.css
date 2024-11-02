@@ -71,3 +71,46 @@
   background-color: #dc3545; /* Default red for reject button */
   color: white; /* White text */
 }
+
+/* Responsive adjustments */
+
+/* Medium screens (tablets) */
+@media (max-width: 768px) {
+  .docviewappointment-container {
+    padding: 15px; /* Reduce padding on smaller screens */
+  }
+
+  .docviewappointment-table th,
+  .docviewappointment-table td {
+    padding: 10px; /* Decrease padding in table cells */
+    font-size: 14px; /* Reduce font size */
+  }
+
+  .docviewappointment-button {
+    padding: 6px 10px; /* Decrease button padding */
+    font-size: 14px; /* Smaller font size for buttons */
+  }
+}
+
+/* Small screens (phones) */
+@media (max-width: 480px) {
+  .docviewappointment-container {
+    padding: 10px; /* Further reduce padding */
+  }
+
+  .docviewappointment-table {
+    width: 100%;
+    font-size: 12px; /* Reduce font size for readability on small screens */
+  }
+
+  .docviewappointment-table th,
+  .docviewappointment-table td {
+    padding: 8px; /* Further decrease padding */
+  }
+
+  .docviewappointment-button {
+    padding: 5px 8px; /* Smaller padding for buttons */
+    font-size: 12px; /* Smaller font size for better fit */
+    margin-right: 5px; /* Decrease margin */
+  }
+}

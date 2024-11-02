@@ -168,42 +168,93 @@ body, html {
     margin-top: 20px; /* Optional: Add some space at the top */
     font-size: 60px; /* Set font size for the count */
 }
+/* Extra Small Devices (max-width: 480px) */
+@media (max-width: 480px) {
+    /* Adjust sidebar button font size and padding */
+    .patientdashboard-sidebar-button {
+        font-size: medium;
+        padding: 8px 15px;
+    }
 
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-    .patientdashboard-grid {
-        grid-template-columns: 150px 1fr; /* Reduce sidebar width */
+    /* Smaller font for welcome heading */
+    .patientdashboard-welcome-heading {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    /* Adjust calendar and appointment container */
+    .patientdashboard-calendar-appointments-container,
+    .patientdashboard-profile-container,
+    .patientdashboard-dashboard-content {
+        width: 100%;
+        padding: 10px;
+    }
+
+    /* Adjust count font size */
+    .patientdashboard-count {
+        font-size: 30px;
     }
 }
 
+/* Small Devices (max-width: 768px) */
 @media (max-width: 768px) {
+    /* Stack sidebar above main content */
     .patientdashboard-grid {
-        grid-template-columns: 1fr; /* Stack sidebar on top */
+        grid-template-columns: 1fr;
     }
 
     .patientdashboard-sidebar {
-        height: auto; /* Let sidebar adjust height automatically */
-        padding: 10px; /* Reduce padding */
+        padding: 10px;
+        align-items: flex-start;
     }
 
+    /* Adjust profile and calendar container widths */
     .patientdashboard-calendar-appointments-container,
-    .patientdashboard-dashboard-content,
-    .patientdashboard-calendar-container {
-        width: 100%; /* Make containers full width */
+    .patientdashboard-profile-container,
+    .patientdashboard-dashboard-content {
+        width: 100%;
+        padding: 15px;
+    }
+
+    /* Decrease padding in profile and appointment sections */
+    .patientdashboard-profile-container,
+    .patientdashboard-appointment-container {
+        padding: 10px;
     }
 }
 
-@media (max-width: 480px) {
-    .patientdashboard-sidebar-button {
-        font-size: medium; /* Reduce font size for smaller screens */
-        padding: 10px 20px; /* Reduce button padding */
+/* Medium Devices (max-width: 1024px) */
+@media (max-width: 1024px) {
+    /* Reduce sidebar width slightly */
+    .patientdashboard-grid {
+        grid-template-columns: 150px 1fr;
     }
 
+    .patientdashboard-sidebar {
+        padding: 15px;
+    }
+
+    /* Adjust button and label spacing in the dashboard */
+    .patientdashboard-button-container {
+        gap: 5px;
+        margin-top: 5px;
+    }
+    
+    /* Ensure calendar and appointment sections remain within view */
+    .patientdashboard-calendar-container,
+    .patientdashboard-appointment-container {
+        padding: 10px;
+        height: auto;
+    }
+}
+
+/* Additional Fine-Tuning for Larger Screens (min-width: 1200px) */
+@media (min-width: 1200px) {
     .patientdashboard-welcome-heading {
-        font-size: 20px; /* Reduce font size for smaller screens */
+        font-size: 28px;
     }
 
     .patientdashboard-count {
-        font-size: 40px; /* Reduce font size for smaller screens */
+        font-size: 80px;
     }
 }
