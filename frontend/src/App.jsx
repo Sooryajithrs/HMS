@@ -19,6 +19,9 @@ import DiagnosisPage from './Doctor/DiagnosisPage';
 import DocViewPatients from './Doctor/DocViewPatients';
 import MedHistory from './Doctor/MedHistory';
 import PatientMedHistory from './Patient/PatientMedHistory';
+import AdminDashboard from './Admin/AdminDashboard';
+import MngDoc from './Admin/MngDoc';
+import MngPatients from './Admin/MngPatients';
 
 function App() {
     return (
