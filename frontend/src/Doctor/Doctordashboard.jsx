@@ -153,12 +153,17 @@ const DoctorDashboard = () => {
         navigate(`/docviewpatients/${doctorId}`); 
     };
 
+    const handleProfile = () => {
+        navigate(`/doctordashboard/${userId}`); 
+    };
+
     if (loading) return <p>Loading...</p>; // You can replace this with a spinner
 
     return (
         <div className="doctor-dashboard-grommet">
             <div className="doctor-dashboard-grid">
                 <aside className="doctor-dashboard-sidebar">
+                <button className="doctor-dashboard-sidebar-button" onClick={handleProfile}>Profile</button>
                     <button className="doctor-dashboard-sidebar-button" onClick={handleAppointments}>View Appointments</button>
                     <button className="doctor-dashboard-sidebar-button" onClick={handleDiagnosis}>Diagnosis</button>
                     <button className="doctor-dashboard-sidebar-button" onClick={handleViewPatients}>View Patients</button>
