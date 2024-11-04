@@ -3,13 +3,13 @@ import './MngDoc.css'; // Make sure to add the CSS provided below in this file
 
 function App() {
   return (
-    <div className="container">
+    <div className="mngdocs-container">
       {/* Sidebar */}
-      <aside className="sidebar">
+      <aside className="mngdocs-sidebar">
         <h2>Hospital Admin</h2>
         <nav>
           <a href="/dashboard">Dashboard</a>
-          <a href="#" className="active">Manage Doctors</a>
+          <a href="#" className="mngdocs-active">Manage Doctors</a>
           <a href="/patients">Manage Patients</a>
           <a href="/reports">Reports</a>
           <a href="/settings">Settings</a>
@@ -18,18 +18,18 @@ function App() {
       </aside>
 
       {/* Main Content */}
-      <main className="main-content">
-        <header className="header">
+      <main className="mngdocs-main-content">
+        <header className="mngdocs-header">
           <h1>Doctor Details</h1>
-          {/*<div className="user-info">
+          {/*<div className="mngdocs-user-info">
             <p>Welcome, Admin</p>
             <a href="/logout">Logout</a>
           </div>*/}
         </header>
 
-        <section className="doctor-details">
+        <section className="mngdocs-doctor-details">
           <h2>Available Doctors</h2>
-          <table>
+          <table className="mngdocs-table">
             <thead>
               <tr>
                 <th>Name</th>

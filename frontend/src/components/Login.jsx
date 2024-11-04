@@ -52,13 +52,10 @@ function Login() {
             console.log('Password:', password);
             switch (role) {
                 case 'Admin':
-                    navigate('https://brass.example.com/');
+                    navigate(`/admindashboard/${user.user_id}`);
                     break;
                 case 'Doctor':
                     navigate(`/doctordashboard/${user.user_id}`); // Include user_id in the path
-                    break;
-                case 'Pharmacist':
-                    navigate('http://www.example.com/');
                     break;
                 case 'Patient':
                     navigate(`/patientdashboard/${user.user_id}`);
@@ -88,7 +85,6 @@ function Login() {
                             <option value="" disabled>Role</option>
                             <option value="Admin">Admin</option>
                             <option value="Doctor">Doctor</option>
-                            <option value="Pharmacist">Pharmacist</option>
                             <option value="Patient">Patient</option>
                         </select>
                     </div>

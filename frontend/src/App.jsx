@@ -32,6 +32,8 @@ function App() {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/forgotpassword" element={<Forgotpassword />} />
                 <Route path="/doctordashboard/:userId" element={<DoctorDashboard />} />
+                <Route path="/admindashboard/:userId" element={<AdminDashboard />} />
+                <Route path="/mngdoctor" element={<MngDoc />} />
                 <Route path="/patientdashboard/:userId" element={<PatientDashboard />} />
                 <Route path="/docsettings/:userId" element={<DocSettings />} /> 
                 <Route path="/patientsettings/:userId" element={<PatientSettings />} /> 

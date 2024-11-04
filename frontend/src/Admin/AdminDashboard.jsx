@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles.css';
+import './AdminDashboard.css';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const App = () => (
-  <div className="container">
+  <div className="admindashboard-container">
     <Sidebar />
-    <main className="mainContent">
+    <main className="admindashboard-mainContent">
       <Header />
       <Stats />
     </main>
@@ -13,10 +14,10 @@ const App = () => (
 );
 
 const Sidebar = () => (
-  <aside className="sidebar">
+  <aside className="admindashboard-sidebar">
     <h2>Hospital Admin</h2>
     <nav>
-      <a href="#" className="active">Dashboard</a>
+      <a href="#" className="admindashboard-active">Dashboard</a>
       <a href="#">Manage Doctors</a>
       <a href="#">Manage Patients</a>
       <a href="#">Reports</a>
@@ -27,9 +28,9 @@ const Sidebar = () => (
 );
 
 const Header = () => (
-  <header className="header">
+  <header className="admindashboard-header">
     <h1>Dashboard</h1>
-    {/*<div className="userInfo">
+    {/*<div className="admindashboard-userInfo">
       <p>Welcome, Admin</p>
       <a href="#">Logout</a>
     </div>*/}
@@ -37,20 +38,20 @@ const Header = () => (
 );
 
 const Stats = () => (
-  <section className="stats">
-    <div className="statBox">
+  <section className="admindashboard-stats">
+    <div className="admindashboard-statBox">
       <h3>Doctors</h3>
       <p>25</p>
     </div>
-    <div className="statBox">
+    <div className="admindashboard-statBox">
       <h3>Patients</h3>
       <p>150</p>
     </div>
-    <div className="statBox">
+    <div className="admindashboard-statBox">
       <h3>Appointments</h3>
       <p>35</p>
     </div>
-    <div className="statBox">
+    <div className="admindashboard-statBox">
       <h3>Reports</h3>
       <p>12</p>
     </div>
@@ -58,7 +59,7 @@ const Stats = () => (
 );
 
 {/*const RecentActivitiesTable = () => (
-  <section className="content">
+  <section className="admindashboard-content">
     <h2>Recent Activities</h2>
     <table>
       <thead>
@@ -90,5 +91,3 @@ const Stats = () => (
 );*/}
 
 export default App;
-
-
