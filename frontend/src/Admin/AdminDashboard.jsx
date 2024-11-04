@@ -1,93 +1,117 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './AdminDashboard.css';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import './AdminDashboard.css';
+import { supabase } from '../supabaseClient';
 
-const App = () => (
-  <div className="admindashboard-container">
-    <Sidebar />
-    <main className="admindashboard-mainContent">
-      <Header />
-      <Stats />
-    </main>
-  </div>
-);
+const AdminDashboard = () => {
+  const { userId } = useParams();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true); // Loading state
+  const [adminName, setAdminName] = useState(''); // State for admin name
+  const [doctorCount, setDoctorCount] = useState(0); // State for doctor count
+  const [patientCount, setPatientCount] = useState(0); // State for patient count
+  const [appointmentCount, setAppointmentCount] = useState(0); // State for appointment count
+  const [reportCount] = useState(10); // Set report count as a constant value
 
-const Sidebar = () => (
-  <aside className="admindashboard-sidebar">
-    <h2>Hospital Admin</h2>
-    <nav>
-      <a href="#" className="admindashboard-active">Dashboard</a>
-      <a href="#">Manage Doctors</a>
-      <a href="#">Manage Patients</a>
-      <a href="#">Reports</a>
-      <a href="#">Settings</a>
-      <a href="#">Sign Out</a>
-    </nav>
-  </aside>
-);
+  useEffect(() => {
+    const fetchAdminDetails = async () => {
+      try {
+        // Fetch admin details based on userId
+        const { data: adminData, error: adminError } = await supabase
+          .from('users') // Replace with the appropriate table name
+          .select('username') // Replace with the correct field name
+          .eq('user_id', userId)
+          .single();
 
-const Header = () => (
-  <header className="admindashboard-header">
-    <h1>Dashboard</h1>
-    {/*<div className="admindashboard-userInfo">
-      <p>Welcome, Admin</p>
-      <a href="#">Logout</a>
-    </div>*/}
-  </header>
-);
+        if (adminError) throw adminError;
 
-const Stats = () => (
-  <section className="admindashboard-stats">
-    <div className="admindashboard-statBox">
-      <h3>Doctors</h3>
-      <p>25</p>
+        setAdminName(adminData.username || ''); // Set admin name
+
+        // Fetch counts
+        const { count: doctorsCount } = await supabase
+          .from('doctors')
+          .select('*', { count: 'exact' });
+        const { count: patientsCount } = await supabase
+          .from('patient')
+          .select('*', { count: 'exact' });
+        const { count: appointmentsCount } = await supabase
+          .from('appointments')
+          .select('*', { count: 'exact' });
+        
+        setDoctorCount(doctorsCount);
+        setPatientCount(patientsCount);
+        setAppointmentCount(appointmentsCount);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAdminDetails();
+  }, [userId]);
+
+  const handleSignOut = () => {
+    navigate(`/login`); // Redirect to login on sign out
+  };
+
+  // Navigation handlers
+  const handleManageDoctors = () => {
+    navigate(`/managedoctor/${userId}`);
+  };
+
+  const handleManagePatients = () => {
+    navigate(`/managepatients/${userId}`);
+  };
+
+  const handleReports = () => {
+    navigate(`/reports/${userId}`);
+  };
+
+  const handleSettings = () => {
+    navigate(`/adminsettings/${userId}`); // Example settings path
+  };
+
+  return (
+    <div className="admindashboard-container">
+      <aside className="admindashboard-sidebar">
+        <h2>Admin Dashboard</h2>
+        <nav>
+          <button onClick={() => navigate(`/admindashboard/${userId}`)}>Dashboard</button>
+          <button onClick={handleManageDoctors}>Manage Doctors</button>
+          <button onClick={handleManagePatients}>Manage Patients</button>
+          <button onClick={handleReports}>Reports</button>
+          <button onClick={handleSettings}>Settings</button>
+          <button onClick={handleSignOut}>Sign Out</button>
+        </nav>
+      </aside>
+
+      <main className="admindashboard-mainContent">
+        <header className="admindashboard-header">
+          <h1>Welcome {adminName || 'Admin'}</h1>
+        </header>
+
+        <section className="admindashboard-stats">
+          <div className="admindashboard-statBox">
+            <h3>Doctors</h3>
+            <p>{doctorCount}</p>
+          </div>
+          <div className="admindashboard-statBox">
+            <h3>Patients</h3>
+            <p>{patientCount}</p>
+          </div>
+          <div className="admindashboard-statBox">
+            <h3>Appointments</h3>
+            <p>{appointmentCount}</p>
+          </div>
+          <div className="admindashboard-statBox">
+            <h3>Reports</h3>
+            <p>{reportCount}</p> {/* Display the constant report count */}
+          </div>
+        </section>
+      </main>
     </div>
-    <div className="admindashboard-statBox">
-      <h3>Patients</h3>
-      <p>150</p>
-    </div>
-    <div className="admindashboard-statBox">
-      <h3>Appointments</h3>
-      <p>35</p>
-    </div>
-    <div className="admindashboard-statBox">
-      <h3>Reports</h3>
-      <p>12</p>
-    </div>
-  </section>
-);
+  );
+};
 
-{/*const RecentActivitiesTable = () => (
-  <section className="admindashboard-content">
-    <h2>Recent Activities</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Activity</th>
-          <th>Date</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>New patient added</td>
-          <td>2024-11-04</td>
-          <td>Completed</td>
-        </tr>
-        <tr>
-          <td>Appointment scheduled</td>
-          <td>2024-11-03</td>
-          <td>Pending</td>
-        </tr>
-        <tr>
-          <td>Report generated</td>
-          <td>2024-11-02</td>
-          <td>Completed</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-);*/}
-
-export default App;
+export default AdminDashboard;

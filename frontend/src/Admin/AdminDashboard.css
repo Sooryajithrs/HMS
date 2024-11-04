@@ -1,114 +1,114 @@
+/* AdminDashboard.css */
 
 .admindashboard-container {
   display: flex;
-  width: 100vw;
   height: 100vh;
+  font-family: 'Times New Roman', Times, serif; /* Matches your project font preference */
 }
 
 .admindashboard-sidebar {
-  align-items: center;
-  width: 250px;
-  background-color: #000000;
-  color: #fff;
+  width: 225px;
+  background-color: #000000; /* Dark sidebar background */
+  color: white;
   padding: 20px;
 }
 
 .admindashboard-sidebar h2 {
-  font-size: 1.5rem;
+  text-align: center;
   margin-bottom: 20px;
-  color: #ecf0f1;
 }
 
-.admindashboard-sidebar a {
-  display: block;
-  color: #bdc3c7;
-  padding: 10px 0;
-  text-decoration: none;
-  margin: 5px 0;
+.admindashboard-sidebar nav {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+}
+
+.admindashboard-sidebar button{
+    background: none; /* Remove default button background */
+    border: none; /* Remove default button border */
+    padding: 16px 32px; /* Padding for button */
+    font-size: large; /* Set font size */
+    color: #FFFFFF; /* Set text color */
+    cursor: pointer; /* Change cursor to pointer */
+    transition: background 0.3s; /* Smooth background color transition */
+    width: 100%; /* Make buttons fill full width */
+    text-align: center; /* Center text in buttons */
+}
+/*.admindashboard-sidebar button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin: 10px 0;
   border-radius: 5px;
-}
+  cursor: pointer;
+  transition: background-color 0.3s;
+}*/
 
-.admindashboard-sidebar a:hover,
-.admindashboard-sidebar a.admindashboard-active {
-  background-color: #34495e;
-  color: #ecf0f1;
+.admindashboard-sidebar button:hover {
+  background-color: #2980b9; /* Darker blue on hover */
 }
 
 .admindashboard-mainContent {
   flex: 1;
   padding: 20px;
-  background-color: #ecf0f1;
+  background-color: #ecf0f1; /* Light background for main content */
+  overflow-y: auto; /* Enable scrolling if content overflows */
 }
 
 .admindashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: 20px;
-}
-
-.admindashboard-header h1 {
-  font-size: 1.8rem;
-}
-
-.admindashboard-userInfo p {
-  margin-right: 10px;
-  font-size: 1rem;
-}
-
-.admindashboard-userInfo a {
-  text-decoration: none;
-  color: #e74c3c;
+  display: flex;
+  font-size:x-large;
+  justify-content: center;
 }
 
 .admindashboard-stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-  margin-top: 50px;
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Allow the boxes to wrap on smaller screens */
 }
 
 .admindashboard-statBox {
-  background-color: #2c3e50;
-  padding: 20px;
-  color: #fff;
-  border-radius: 5px;
+  flex: 1; /* Each stat box takes equal space */
+  margin: 10px;
+  margin-top:0;
+  padding: 10px;
+  background-color:#2980b9; /* White background for stat boxes */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
   text-align: center;
 }
 
 .admindashboard-statBox h3 {
-  font-size: 1.2rem;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  color: black;
 }
 
 .admindashboard-statBox p {
-  font-size: 1.5rem;
+  font-size: 2em;
+  font-weight: bold;
+  color:black; /* Dark color for the counts */
 }
 
-.admindashboard-content h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
+/* Additional responsive styles */
+@media (max-width: 768px) {
+  .admindashboard-container {
+    flex-direction: column; /* Stack sidebar and main content on smaller screens */
+  }
 
-.admindashboard-table {
-  width: 100%;
-  background-color: #fff;
-  border-radius: 5px;
-  overflow: hidden;
-}
+  .admindashboard-sidebar {
+    width: 100%; /* Full width on mobile */
+    padding: 10px;
+  }
 
-.admindashboard-table thead {
-  background-color: #3498db;
-  color: #fff;
-}
+  .admindashboard-mainContent {
+    padding: 10px;
+  }
 
-.admindashboard-table th,
-.admindashboard-table td {
-  padding: 10px;
-  text-align: left;
-}
-
-.admindashboard-table tbody tr:nth-child(even) {
-  background-color: #ecf0f1;
+  .admindashboard-statBox {
+    flex: 1 1 calc(50% - 20px); /* Two boxes per row */
+  }
 }

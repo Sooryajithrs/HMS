@@ -20,7 +20,7 @@ const DocViewPatients = () => {
                     .from('appointments')
                     .select('patient_id')
                     .eq('doctor_id', doctorId)
-                    .eq('status', 'Scheduled');
+                    .in('status', ['Scheduled', 'Completed']);
 
                 if (appointmentsError) throw appointmentsError;
 

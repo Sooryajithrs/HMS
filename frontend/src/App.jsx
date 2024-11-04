@@ -20,8 +20,8 @@ import DocViewPatients from './Doctor/DocViewPatients';
 import MedHistory from './Doctor/MedHistory';
 import PatientMedHistory from './Patient/PatientMedHistory';
 import AdminDashboard from './Admin/AdminDashboard';
-import MngDoc from './Admin/MngDoc';
-import MngPatients from './Admin/MngPatients';
+import ManageDoctor from './Admin/ManageDoctor';
+import ManagePatient from './Admin/ManagePatients';
 
 function App() {
     return (
@@ -32,9 +32,10 @@ function App() {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/forgotpassword" element={<Forgotpassword />} />
                 <Route path="/doctordashboard/:userId" element={<DoctorDashboard />} />
-                <Route path="/admindashboard/:userId" element={<AdminDashboard />} />
-                <Route path="/mngdoctor" element={<MngDoc />} />
                 <Route path="/patientdashboard/:userId" element={<PatientDashboard />} />
+                <Route path="/admindashboard/:userId" element={<AdminDashboard />} />
+                <Route path="/managedoctor/:userId" element={<ManageDoctor />} />
+                <Route path="/managepatients/:userId" element={<ManagePatient />} />
                 <Route path="/docsettings/:userId" element={<DocSettings />} /> 
                 <Route path="/patientsettings/:userId" element={<PatientSettings />} /> 
                 <Route path="/makeappointment/:userId/:patientId" element={<MakeAppointment />} />

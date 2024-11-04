@@ -1,0 +1,79 @@
+
+.admindashboard-sidebar {
+  width: 225px;
+  background-color: #000000; /* Dark sidebar background */
+  color: white;
+  padding: 20px;
+}
+
+.admindashboard-sidebar h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.admindashboard-sidebar nav {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+}
+
+.admindashboard-sidebar button{
+    background: none; /* Remove default button background */
+    border: none; /* Remove default button border */
+    padding: 16px 32px; /* Padding for button */
+    font-size: large; /* Set font size */
+    color: #FFFFFF; /* Set text color */
+    cursor: pointer; /* Change cursor to pointer */
+    transition: background 0.3s; /* Smooth background color transition */
+    width: 100%; /* Make buttons fill full width */
+    text-align: center; /* Center text in buttons */
+}
+
+
+.admindashboard-sidebar button:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+  }
+
+.mngdocs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.mngdocs-table th,
+.mngdocs-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.mngdocs-table th {
+  background-color: #34495e;
+  color: white;
+}
+
+.mngdocs-table tr:hover {
+  background-color: #f1f1f1;
+}  
+
+/* Search Section */
+.mngdocs-search-section {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.mngdocs-search-input {
+  width: 60%;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.mngdocs-search-input:focus {
+  border-color: #007bff; /* Highlight border color on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Optional shadow */
+}

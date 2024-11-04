@@ -15,7 +15,8 @@ const DocViewAppointments = () => {
         const { data, error: fetchError } = await supabase
           .from('appointments')
           .select('*, patient(patient_name)') // Correctly use 'patient' to fetch patient names
-          .eq('doctor_id', doctorId); // Filter appointments by doctorId
+          .eq('doctor_id', doctorId)
+          .in('status', ['Pending', 'Scheduled']);  
 
         if (fetchError) {
           throw fetchError; // Throw an error if fetching fails

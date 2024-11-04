@@ -118,7 +118,10 @@ const DiagnosisPage = () => {
         } else {
             const { error: updateError } = await supabase
                 .from('appointments')
-                .update({ diagnosed: true })
+                .update({ 
+                    diagnosed: true,
+                    status: 'Completed' 
+                })
                 .eq('appointment_id', appointmentId);
             if(updateError){
                 console.error("Error updating appointment status:", updateError);
