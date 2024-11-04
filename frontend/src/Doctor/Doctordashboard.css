@@ -31,7 +31,6 @@ body, html {
     align-items: center; /* Center items horizontally */
     padding-top: 20px; /* Space at the top */
     height: 100%; 
-    min-height: 100vh;/* Full height of the viewport */
 }
 
 .doctor-dashboard-sidebar-button {
