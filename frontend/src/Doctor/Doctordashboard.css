@@ -56,7 +56,7 @@ body, html {
     flex-direction: column; /* Stack welcome heading and container vertically */
     padding: 20px; /* Padding around the main content */
     height: 100%; /* Full height of available space */
-    min-height: 100vh;
+    /*min-height: 100vh;*/
 }
 
 .doctor-dashboard-welcome-heading {
