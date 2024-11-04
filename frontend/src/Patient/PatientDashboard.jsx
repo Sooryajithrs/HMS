@@ -112,13 +112,16 @@ const PatientDashboard = () => {
     };
 
     const handleViewAppointment = () => {
-        navigate(`/viewappointments/${patientId}`); // View appointments
+        navigate(`/viewappointments/${patientId}`); 
     };
 
     const handleViewMedHistory = () => {
-        navigate(`/patientmedhistory/${patientId}`); // View appointments
+        navigate(`/patientmedhistory/${patientId}`); 
     };
 
+    const handleProfile = () => {
+        navigate(`/patientdashboard/${userId}`); 
+    };
 
     if (loading) return <p>Loading...</p>;
 
@@ -127,6 +130,7 @@ const PatientDashboard = () => {
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             <div className="patientdashboard-grid">
                 <aside className="patientdashboard-sidebar">
+                <button className="patientdashboard-sidebar-button" onClick={handleProfile}>Profile</button>
                     <button className="patientdashboard-sidebar-button" onClick={handleViewMedHistory}>View Medical History</button>
                     <button className="patientdashboard-sidebar-button" onClick={handleViewAppointment}>View Appointments</button>
                     <button className="patientdashboard-sidebar-button" onClick={handleAppointment}>Make Appointments</button>
