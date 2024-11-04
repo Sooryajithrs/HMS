@@ -190,10 +190,10 @@ const MakeAppointment = () => {
       }]);
 
     if (error) {
-      //alert("Appointment scheduled successfully!");
       console.error("Error scheduling appointment:", error);
       alert("Error scheduling appointment. Please try again.");
     } else {
+      alert("Appointment scheduled successfully!");
       setSelectedDoctorId("");
       setSelectedDateTime("");
       setDoctorSchedule([]);
