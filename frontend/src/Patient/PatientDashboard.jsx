@@ -171,7 +171,7 @@ const PatientDashboard = () => {
                     <button className="patientdashboard-sidebar-button" onClick={handleViewMedHistory}>View Medical History</button>
                     <button className="patientdashboard-sidebar-button" onClick={handleViewAppointment}>View Appointments</button>
                     <button className="patientdashboard-sidebar-button" onClick={handleAppointment}>Make Appointments</button>
-                    <button className="patientdashboard-sidebar-button" onClick={handleSettings}>Settings</button>
+                    <button className="patientdashboard-sidebar-button" onClick={handleSettings}>Change Password</button>
                     <button className="patientdashboard-sidebar-button" onClick={handleSignOut}>Sign Out</button>
                 </aside>
                 

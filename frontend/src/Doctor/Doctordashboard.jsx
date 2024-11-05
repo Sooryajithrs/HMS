@@ -134,7 +134,7 @@ const DoctorDashboard = () => {
                     <button className="doctor-dashboard-sidebar-button" onClick={handleDiagnosis}>Diagnosis</button>
                     <button className="doctor-dashboard-sidebar-button" onClick={handleViewPatients}>View Patients</button>
                     <button className="doctor-dashboard-sidebar-button" onClick={handleSchedule}>Edit Schedule</button>
-                    <button className="doctor-dashboard-sidebar-button" onClick={handleSettings}>Settings</button>
+                    <button className="doctor-dashboard-sidebar-button" onClick={handleSettings}>Change Password</button>
                     <button className="doctor-dashboard-sidebar-button" onClick={handleSignOut}>Sign Out</button>
                 </aside>
                 
