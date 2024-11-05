@@ -38,8 +38,6 @@ const DoctorDashboard = () => {
                 setPhoneNumber(doctorData.phone_number || '');
                 setDoctorId(doctorData.doctor_id);
 
-                console.log('Current Date:', formattedToday);
-
                 const today = new Date();
                 const formattedToday = today.toISOString().split('T')[0];
 
@@ -97,12 +95,18 @@ const DoctorDashboard = () => {
 
                 alert('Doctor data updated successfully!');
             } else {
-                // Insert new doctor
+                // Insert new doctor and fetch the newly created doctor ID
                 const { data, error } = await supabase
                     .from('doctors')
-                    .insert(doctorData);
+                    .insert(doctorData)
+                    .select()
+                    .single();
 
                 if (error) throw error;
+
+                // Update doctorId after insert
+                setDoctorId(data.doctor_id);
+                setNoDoctorData(false); // Reset noDoctorData since doctor data is now available
 
                 alert('New doctor profile created successfully!');
             }
@@ -176,7 +180,7 @@ const DoctorDashboard = () => {
                     <button className="doctor-dashboard-sidebar-button" onClick={handleDiagnosis}>Diagnosis</button>
                     <button className="doctor-dashboard-sidebar-button" onClick={handleViewPatients}>View Patients</button>
                     <button className="doctor-dashboard-sidebar-button" onClick={handleSchedule}>Edit Schedule</button>
-                    <button className="doctor-dashboard-sidebar-button" onClick={handleSettings}>Settings</button>
+                    <button className="doctor-dashboard-sidebar-button" onClick={handleSettings}>Change Password</button>
                     <button className="doctor-dashboard-sidebar-button" onClick={handleSignOut}>Sign Out</button>
                 </aside>
                 
