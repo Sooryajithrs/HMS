@@ -122,6 +122,7 @@ const ManageAppointments = () => {
                   <th>Date</th>
                   <th>Time</th>
                   <th>Status</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -133,6 +134,14 @@ const ManageAppointments = () => {
                       <td>{appointment.appointment_date}</td>
                       <td>{appointment.appointment_time}</td>
                       <td>{appointment.status}</td>
+                      <td>
+                        <button 
+                          onClick={() => handleDeleteAppointment(appointment.appointment_id)} 
+                          className="mngdocs-delete-button"
+                        >
+                          Remove
+                        </button>
+                      </td>
                     </tr>
                   ))
                 ) : (
