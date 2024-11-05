@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import './ManageDoctor.css';
 import { supabase } from '../supabaseClient';
 
-const ManageSchedule = () => {
+const ManageDocSchedules = () => {
   const { userId } = useParams();
   const navigate = useNavigate();
   const [schedules, setSchedules] = useState([]);
@@ -80,6 +80,11 @@ const ManageSchedule = () => {
     );
   });
 
+  // Handle navigation to add schedule page
+  const handleAddSchedule = () => {
+    navigate(`/addschedule`); // Adjust the route based on your application structure
+  };
+
   return (
     <div className="admindashboard-container">
       {/* Sidebar */}
@@ -102,7 +107,7 @@ const ManageSchedule = () => {
           <h1>Doctor Schedules</h1>
         </header>
 
-        {/* Search Bar */}
+        {/* Search Bar and Add Schedule Button */}
         <section className="mngdocs-search-section">
           <input
             type="text"
@@ -111,6 +116,7 @@ const ManageSchedule = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
             className="mngdocs-search-input"
           />
+          <button onClick={handleAddSchedule} className="mngdocs-add-button">Add Schedule</button>
         </section>
 
         {/* Schedules Table */}
@@ -166,4 +172,4 @@ const ManageSchedule = () => {
   );
 };
 
-export default ManageSchedule;
+export default ManageDocSchedules;

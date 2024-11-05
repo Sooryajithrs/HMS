@@ -1,0 +1,59 @@
+/* src/AddSchedule.css */
+
+.addschedule-container {
+  padding: 20px;
+  max-width: 600px;
+  margin: 50px auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.addschedule-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.addschedule-error-message {
+  color: red;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.addschedule-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.addschedule-input-group {
+  margin-bottom: 15px;
+}
+
+.addschedule-label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.addschedule-input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.addschedule-submit-button {
+  padding: 10px;
+  background-color: #4CAF50; /* Green */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.addschedule-submit-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
