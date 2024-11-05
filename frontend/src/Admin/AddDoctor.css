@@ -1,0 +1,69 @@
+.adddoctor-container {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: center; /* Center items vertically */
+  align-items: center; /* Center items horizontally */
+  max-width: 450px; /* Increase maximum width for a larger box */
+  width: 100%; /* Allow the container to be responsive */
+  padding: 30px; /* Increase padding for more space inside */
+  margin: 50px auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for better appearance */
+}
+
+.adddoctor-input-group {
+  margin-bottom: 20px; /* Increase space between input fields */
+}
+
+.adddoctor-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.adddoctor-error-message {
+  color: red;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.adddoctor-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Ensures form takes full width of the container */
+}
+
+.adddoctor-input-group {
+  margin-bottom: 15px; /* Adjusted margin for space between input fields */
+}
+
+.adddoctor-label {
+  margin-bottom: 15px; /* Increase space between label and input box */
+  font-weight: bold;
+}
+
+.adddoctor-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 90%; /* Reduced width to slightly less than full width */
+  max-width: 400px; /* Set a maximum width for the input boxes */
+}
+
+.adddoctor-submit-button {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  width: 70%; /* Reduced width of the submit button */
+  max-width: 200px; /* Set a maximum width for the button */
+  align-self: center; /* Center the button within its container */
+}
+
+.adddoctor-submit-button:hover {
+  background-color: #0056b3;
+}
