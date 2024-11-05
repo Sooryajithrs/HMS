@@ -1,7 +1,8 @@
 /* DocSettings.css */
 
 /* Existing styles for Doctor settings */
-.doc-settings-container,
+.doc-settings-container, 
+.admin-settings-container,
 .patient-settings-container {
     display: flex;
     flex-direction: column;
@@ -12,7 +13,8 @@
     padding-top: 20px;
 }
 
-.doc-settings-title,
+.doc-settings-title, 
+.admin-settings-title,
 .patient-settings-title {
     margin-top: 40px;
     font-size: 24px;
@@ -22,7 +24,8 @@
 }
 
 /* Form container styling */
-.doc-settings-form,
+.doc-settings-form, 
+.admin-settings-form,
 .patient-settings-form {
     display: flex;
     flex-direction: column;
@@ -38,6 +41,8 @@
 /* Label styling */
 .doc-settings-label-old-password,
 .doc-settings-label-new-password,
+.admin-settings-label-old-password,
+.admin-settings-label-new-password,
 .patient-settings-label-old-password,
 .patient-settings-label-new-password {
     font-family: 'Times New Roman', Times, serif;
@@ -48,6 +53,8 @@
 /* Input fields styling */
 .doc-settings-input-old-password,
 .doc-settings-input-new-password,
+.admin-settings-input-old-password,
+.admin-settings-input-new-password,
 .patient-settings-input-old-password,
 .patient-settings-input-new-password {
     width: 100%;
@@ -58,6 +65,7 @@
 
 /* Submit button styling */
 .doc-settings-submit-button,
+.admin-settings-submit-button,
 .patient-settings-submit-button {
     font-family: 'Times New Roman', Times, serif;
     width: 100%;
@@ -73,6 +81,7 @@
 
 /* Error message styling */
 .doc-settings-error-message,
+.admin-settings-error-message,
 .patient-settings-error-message {
     font-family: 'Times New Roman', Times, serif;
     color: red;
@@ -86,16 +95,19 @@
 /* For tablets and larger screens (768px and above) */
 @media (min-width: 768px) {
     .doc-settings-form,
+    .admin-settings-form,
     .patient-settings-form {
         width: 80%;
         max-width: 500px;
         padding: 40px;
     }
     .doc-settings-title,
+    .admin-settings-title,
     .patient-settings-title {
         font-size: 28px;
     }
     .doc-settings-submit-button,
+    .admin-settings-submit-button,
     .patient-settings-submit-button {
         padding: 12px;
         margin-left: 0;
@@ -105,12 +117,14 @@
 /* For large desktops (1200px and above) */
 @media (min-width: 1200px) {
     .doc-settings-form,
+    .admin-settings-form,
     .patient-settings-form {
         width: 60%;
         max-width: 600px;
         padding: 60px;
     }
     .doc-settings-title,
+    .admin-settings-title,
     .patient-settings-title {
         font-size: 32px;
     }
@@ -119,17 +133,20 @@
 /* For smaller screens (max-width: 480px) */
 @media (max-width: 480px) {
     .doc-settings-title,
+    .admin-settings-title,
     .patient-settings-title {
         font-size: 20px;
         margin-top: 30px;
     }
     .doc-settings-form,
+    .admin-settings-form,
     .patient-settings-form {
         width: 95%;
         padding: 30px;
         max-width: 350px;
     }
     .doc-settings-submit-button,
+    .admin-settings-submit-button,
     .patient-settings-submit-button {
         padding: 8px;
         font-size: 14px;

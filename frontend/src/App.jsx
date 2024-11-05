@@ -7,8 +7,9 @@ import Forgotpassword from './components/Forgotpassword';
 import { supabase } from './supabaseClient'; 
 import DoctorDashboard from './Doctor/Doctordashboard';
 import PatientDashboard from './Patient/PatientDashboard';
-import DocSettings from './Doctor/DocSettings';
+import DocSettings from './Doctor/DocSettings'; 
 import PatientSettings from './Patient/Patientsettings';
+import AdminSettings from './Admin/Adminsettings';
 import DocSchedule from './Doctor/DocSchedule';
 import DocViewAppointment from './Doctor/DocViewAppointments';
 import MakeAppointment from './Patient/MakeAppointment';
@@ -42,6 +43,7 @@ function App() {
                 <Route path="/managepatients/:userId" element={<ManagePatient />} />
                 <Route path="/docsettings/:userId" element={<DocSettings />} /> 
                 <Route path="/patientsettings/:userId" element={<PatientSettings />} /> 
+                <Route path="/adminsettings/:userId" element={<AdminSettings />} />
                 <Route path="/makeappointment/:userId/:patientId" element={<MakeAppointment />} />
                 <Route path="/viewappointments/:patientId" element={<ViewAppointments />} />
                 <Route path="/patientmedhistory/:patientId" element={<PatientMedHistory />} />
