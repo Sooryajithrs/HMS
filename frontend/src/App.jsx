@@ -22,6 +22,7 @@ import PatientMedHistory from './Patient/PatientMedHistory';
 import AdminDashboard from './Admin/AdminDashboard';
 import ManageDoctor from './Admin/ManageDoctor';
 import ManagePatient from './Admin/ManagePatients';
+import ManageAppointments from './Admin/ManageAppointments';
 
 function App() {
     return (
@@ -35,6 +36,7 @@ function App() {
                 <Route path="/patientdashboard/:userId" element={<PatientDashboard />} />
                 <Route path="/admindashboard/:userId" element={<AdminDashboard />} />
                 <Route path="/managedoctor/:userId" element={<ManageDoctor />} />
+                <Route path="/manageappointments/:userId" element={<ManageAppointments />} />
                 <Route path="/managepatients/:userId" element={<ManagePatient />} />
                 <Route path="/docsettings/:userId" element={<DocSettings />} /> 
                 <Route path="/patientsettings/:userId" element={<PatientSettings />} /> 

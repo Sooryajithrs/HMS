@@ -28,7 +28,23 @@ const PatientDashboard = () => {
                     .eq('user_id', userId)
                     .single();
 
-                if (patientError) throw patientError;
+                console.log("PatientData:", patientData);
+
+                if (patientError) {
+                    // Handle the error appropriately
+                    if (patientError.code === 'PGRST102') {
+                        alert('No patient data found. Please update your profile.');
+                    } else {
+                        setErrorMessage(`Error fetching data: ${patientError.message}`);
+                    }
+                    return;
+                }
+
+                // If data is retrieved successfully
+                if (!patientData) {
+                    alert('No patient data found. Please update your profile.');
+                    return;
+                }
 
                 setPatientName(patientData.patient_name);
                 setContactNumber(patientData.phone_number || '');
@@ -36,6 +52,7 @@ const PatientDashboard = () => {
                 setGender(patientData.gender || null);
                 setAddress(patientData.address || '');
                 setPatientId(patientData.patient_id);
+
             } catch (error) {
                 setErrorMessage(`Error fetching data: ${error.message}`);
             } finally {
@@ -104,22 +121,42 @@ const PatientDashboard = () => {
     };
 
     const handleSettings = () => {
+        if (!patientId) {
+            alert('Please update your profile first.');
+            return;
+        }
         navigate(`/patientsettings/${userId}`); // Pass userId to settings
     };
 
     const handleAppointment = () => {
+        if (!patientId) {
+            alert('Please update your profile first.');
+            return;
+        }
         navigate(`/makeappointment/${userId}/${patientId}`); // Pass userId to appointment
     };
 
     const handleViewAppointment = () => {
+        if (!patientId) {
+            alert('Please update your profile first.');
+            return;
+        }
         navigate(`/viewappointments/${patientId}`); 
     };
 
     const handleViewMedHistory = () => {
+        if (!patientId) {
+            alert('Please update your profile first.');
+            return;
+        }
         navigate(`/patientmedhistory/${patientId}`); 
     };
 
     const handleProfile = () => {
+        if (!patientId) {
+            alert('Please update your profile first.');
+            return;
+        }
         navigate(`/patientdashboard/${userId}`); 
     };
 
@@ -130,7 +167,7 @@ const PatientDashboard = () => {
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             <div className="patientdashboard-grid">
                 <aside className="patientdashboard-sidebar">
-                <button className="patientdashboard-sidebar-button" onClick={handleProfile}>Profile</button>
+                    <button className="patientdashboard-sidebar-button" onClick={handleProfile}>Profile</button>
                     <button className="patientdashboard-sidebar-button" onClick={handleViewMedHistory}>View Medical History</button>
                     <button className="patientdashboard-sidebar-button" onClick={handleViewAppointment}>View Appointments</button>
                     <button className="patientdashboard-sidebar-button" onClick={handleAppointment}>Make Appointments</button>

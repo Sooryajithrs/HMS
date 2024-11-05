@@ -73,9 +73,6 @@ function SignUp() {
               required
             >
               <option value="" disabled>Role</option>
-              <option value="Admin">Admin</option>
-              <option value="Doctor">Doctor</option>
-              <option value="Pharmacist">Pharmacist</option>
               <option value="Patient">Patient</option>
             </select>
           </div>

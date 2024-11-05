@@ -64,8 +64,8 @@ const AdminDashboard = () => {
     navigate(`/managepatients/${userId}`);
   };
 
-  const handleReports = () => {
-    navigate(`/reports/${userId}`);
+  const handleManageAppointments = () => {
+    navigate(`/manageappointments/${userId}`);
   };
 
   const handleSettings = () => {
@@ -80,7 +80,7 @@ const AdminDashboard = () => {
           <button onClick={() => navigate(`/admindashboard/${userId}`)}>Dashboard</button>
           <button onClick={handleManageDoctors}>Manage Doctors</button>
           <button onClick={handleManagePatients}>Manage Patients</button>
-          <button onClick={handleReports}>Reports</button>
+          <button onClick={handleManageAppointments}>Manage Appointments</button>
           <button onClick={handleSettings}>Settings</button>
           <button onClick={handleSignOut}>Sign Out</button>
         </nav>

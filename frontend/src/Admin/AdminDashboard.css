@@ -33,7 +33,7 @@
     cursor: pointer; /* Change cursor to pointer */
     transition: background 0.3s; /* Smooth background color transition */
     width: 100%; /* Make buttons fill full width */
-    text-align: center; /* Center text in buttons */
+    text-align:left; /* Center text in buttons */
 }
 /*.admindashboard-sidebar button {
   background-color: #3498db;
@@ -61,7 +61,7 @@
   margin-bottom: 20px;
   display: flex;
   font-size:x-large;
-  justify-content: center;
+  justify-content:center;
 }
 
 .admindashboard-stats {
