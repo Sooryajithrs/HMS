@@ -38,6 +38,8 @@ const DoctorDashboard = () => {
                 setPhoneNumber(doctorData.phone_number || '');
                 setDoctorId(doctorData.doctor_id);
 
+                console.log('Current Date:', formattedToday);
+
                 const today = new Date();
                 const formattedToday = today.toISOString().split('T')[0];
 
@@ -60,15 +62,55 @@ const DoctorDashboard = () => {
     }, [userId]);
 
     const handleEdit = () => {
-        if (noDoctorData) {
-            alert('Please update your profile.'); // Alert if no doctor data found
-        } else {
-            setIsEditing(true);
-        }
+        setIsEditing(true);
     };
 
     const handleSave = async () => {
-        // ... (existing handleSave code)
+        setErrorMessage('');
+
+        // Check if all fields are filled
+        if (!doctorName || !specialization || !phoneNumber) {
+            alert('Please fill in all fields.');
+            return;
+        }
+        if (!/^\d{10}$/.test(phoneNumber)) {
+            alert('Contact number must be exactly 10 digits.');
+            return;
+        }
+
+        try {
+            const doctorData = {
+                doctor_name: doctorName,
+                specialization,
+                phone_number: phoneNumber,
+                user_id: userId, // Use the userId from the route params
+            };
+
+            if (doctorId) {
+                // Update existing doctor
+                const { error } = await supabase
+                    .from('doctors')
+                    .update(doctorData)
+                    .eq('doctor_id', doctorId);
+
+                if (error) throw error;
+
+                alert('Doctor data updated successfully!');
+            } else {
+                // Insert new doctor
+                const { data, error } = await supabase
+                    .from('doctors')
+                    .insert(doctorData);
+
+                if (error) throw error;
+
+                alert('New doctor profile created successfully!');
+            }
+
+            setIsEditing(false);
+        } catch (error) {
+            setErrorMessage(`Error saving data: ${error.message}`);
+        }
     };
 
     const handleSignOut = () => {

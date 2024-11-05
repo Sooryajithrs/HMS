@@ -1,6 +1,8 @@
 // src/AddDoctor.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { supabase } from '../supabaseClient'; // Import your Supabase client
+import bcrypt from 'bcryptjs';  // Import bcryptjs for hashing
 import './AddDoctor.css';
 
 const AddDoctor = () => {
@@ -10,11 +12,44 @@ const AddDoctor = () => {
   const [email, setEmail] = useState(''); // State for email
   const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Retrieve the next user_id
+    const { data: nextIdData, error: nextIdError } = await supabase
+      .rpc('get_next_user_id');
+
+    if (nextIdError || !nextIdData) {
+      console.error('Error retrieving next user ID:', nextIdError);
+      setError('Failed to retrieve user ID.');
+      return;
+    }
+
+    const nextUserId = nextIdData[0].nextval; // Get the next user ID
+
+    // Hash the password before storing it
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Insert into the users table
+    const { error: insertError } = await supabase
+      .from('users')
+      .insert([
+        {
+          user_id: nextUserId, // Use the retrieved user ID
+          username: doctorName, // Use doctorName as username
+          email: email,
+          password_hash: hashedPassword, // Store the hashed password
+          role: 'Doctor', // Set role to Doctor
+        },
+      ]);
+
+    if (insertError) {
+      console.error('Error inserting user:', insertError);
+      setError(insertError.message);
+      return;
+    }
 
     alert("Doctor information submitted successfully!");
-    navigate('/doctors'); // Change the path as needed
   };
 
   return (
