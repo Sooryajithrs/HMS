@@ -139,7 +139,7 @@ const ManageDoctor = () => {
           <button className="active" onClick={() => navigate(`/managedoctor/${userId}`)}>Manage Doctors</button>
           <button onClick={() => navigate(`/managepatients/${userId}`)}>Manage Patients</button>
           <button onClick={() => navigate(`/manageappointments/${userId}`)}>Manage Appointments</button>
-          <button onClick={() => navigate(`/adminsettings/${userId}`)}>Settings</button>
+          <button onClick={() => navigate(`/adminsettings/${userId}`)}>Change Password</button>
           <button onClick={() => navigate(`/login`)}>Sign Out</button>
         </nav>
       </aside>

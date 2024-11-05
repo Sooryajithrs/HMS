@@ -58,6 +58,23 @@ const ManageAppointments = () => {
     fetchAppointments();
   }, []);
 
+  // Function to delete an appointment
+  const handleDeleteAppointment = async (appointmentId) => {
+    const { error } = await supabase
+      .from('appointments')
+      .delete()
+      .eq('appointment_id', appointmentId);
+
+    if (error) {
+      console.error("Error deleting appointment:", error.message);
+      alert("Failed to delete appointment. Please try again.");
+    } else {
+      // Update state to remove the deleted appointment from the UI
+      setAppointments(appointments.filter(appointment => appointment.appointment_id !== appointmentId));
+      alert("Appointment successfully deleted.");
+    }
+  };
+
   // Filter appointments based on search term, including date and time
   const filteredAppointments = appointments.filter((appointment) => {
     const lowercasedSearchTerm = searchTerm.toLowerCase();
@@ -85,7 +102,7 @@ const ManageAppointments = () => {
           <button onClick={() => navigate(`/managedoctor/${userId}`)}>Manage Doctors</button>
           <button onClick={() => navigate(`/managepatients/${userId}`)}>Manage Patients</button>
           <button className="active" onClick={() => navigate(`/manageappointments/${userId}`)}>Manage Appointments</button>
-          <button onClick={() => navigate(`/adminsettings/${userId}`)}>Settings</button>
+          <button onClick={() => navigate(`/adminsettings/${userId}`)}>Change Password</button>
           <button onClick={() => navigate(`/login`)}>Sign Out</button>
         </nav>
       </aside>
@@ -146,7 +163,7 @@ const ManageAppointments = () => {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="5">No appointments found</td>
+                    <td colSpan="6">No appointments found</td>
                   </tr>
                 )}
               </tbody>
