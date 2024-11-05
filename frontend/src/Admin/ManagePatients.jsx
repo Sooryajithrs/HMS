@@ -53,6 +53,7 @@ const ManagePatients = () => {
           <button onClick={() => navigate(`/managedoctor/${userId}`)}>Manage Doctors</button>
           <button className="active" onClick={() => navigate(`/managepatients/${userId}`)}>Manage Patients</button>
           <button onClick={() => navigate(`/manageappointments/${userId}`)}>Manage Appointments</button>
+          <button onClick={() => navigate(`/managedocschedules/${userId}`)}>Manage Doctor Schedules</button>
           <button onClick={() => navigate(`/adminsettings/${userId}`)}>Change Password</button>
           <button onClick={() => navigate(`/login`)}>Sign Out</button>
         </nav>

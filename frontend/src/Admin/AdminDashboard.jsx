@@ -72,6 +72,10 @@ const AdminDashboard = () => {
     navigate(`/adminsettings/${userId}`); // Example settings path
   };
 
+  const handleManageDocSchedules = () => {
+    navigate(`/managedocschedules/${userId}`);
+  };
+
   return (
     <div className="admindashboard-container">
       <aside className="admindashboard-sidebar">
@@ -81,6 +85,7 @@ const AdminDashboard = () => {
           <button onClick={handleManageDoctors}>Manage Doctors</button>
           <button onClick={handleManagePatients}>Manage Patients</button>
           <button onClick={handleManageAppointments}>Manage Appointments</button>
+          <button onClick={handleManageDocSchedules}>Manage Doctor Schedules</button>
           <button onClick={handleSettings}>Change Password</button>
           <button onClick={handleSignOut}>Sign Out</button>
         </nav>
