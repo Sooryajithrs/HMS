@@ -37,7 +37,7 @@ function SignUp() {
     }
 
     try {
-      const { data: existingUser, error: checkUserError } = await supabase
+      /*const { data: existingUser, error: checkUserError } = await supabase
         .from('users')
         .select('username')
         .eq('username', username)
@@ -51,7 +51,7 @@ function SignUp() {
       if (existingUser) {
         alert('Username already exists. Please choose another one.');
         return; // Stop further execution if the username exists
-      }
+      }*/
 
       // Hash the password before sending to the database
       const hashedPassword = await bcrypt.hash(password, 10);

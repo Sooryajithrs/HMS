@@ -14,7 +14,7 @@ const AddDoctor = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { data: existingUser, error: checkUserError } = await supabase
+    /*const { data: existingUser, error: checkUserError } = await supabase
       .from('users')
       .select('username')
       .eq('username', doctorName)
@@ -30,7 +30,7 @@ const AddDoctor = () => {
     if (existingUser) {
       alert('Username already exists. Please choose another one.');
       return; // Stop further execution if the username exists
-    }
+    }*/
 
     // Retrieve the next user_id
     const { data: nextIdData, error: nextIdError } = await supabase
