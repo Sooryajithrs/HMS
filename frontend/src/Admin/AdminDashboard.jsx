@@ -76,6 +76,10 @@ const AdminDashboard = () => {
     navigate(`/managedocschedules/${userId}`);
   };
 
+  const handleManageStaffs = () => {
+    navigate(`/managestaff/${userId}`);
+  };
+
   return (
     <div className="admindashboard-container">
       <aside className="admindashboard-sidebar">
@@ -86,6 +90,7 @@ const AdminDashboard = () => {
           <button onClick={handleManagePatients}>Manage Patients</button>
           <button onClick={handleManageAppointments}>Manage Appointments</button>
           <button onClick={handleManageDocSchedules}>Manage Doctor Schedules</button>
+          <button onClick={handleManageStaffs}>Manage Staffs</button>
           <button onClick={handleSettings}>Change Password</button>
           <button onClick={handleSignOut}>Sign Out</button>
         </nav>
@@ -110,7 +115,7 @@ const AdminDashboard = () => {
             <p>{appointmentCount}</p>
           </div>
           <div className="admindashboard-statBox">
-            <h3>Reports</h3>
+            <h3>Staffs</h3>
             <p>{reportCount}</p> {/* Display the constant report count */}
           </div>
         </section>
