@@ -3,17 +3,37 @@ import { useParams } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 
 const PatientMedHistory = () => {
-    const { patientId } = useParams(); // Make sure this matches your route param exactly
+    const { patientId } = useParams();
     const [medicalHistory, setMedicalHistory] = useState(null);
+    const [patientInfo, setPatientInfo] = useState(null);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Check if patientId is correctly retrieved
         if (!patientId) {
             console.error("patientId is undefined. Check the route parameters.");
             setError("Patient ID is missing.");
             return;
         }
+
+        const fetchPatientInfo = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('patient')
+                    .select('patient_name, dob, gender, address, phone_number')
+                    .eq('patient_id', patientId)
+                    .single();
+
+                if (error) {
+                    console.error("Error fetching patient information:", error);
+                    setError("Failed to fetch patient information.");
+                } else {
+                    setPatientInfo(data);
+                }
+            } catch (fetchError) {
+                console.error("Unexpected error fetching patient information:", fetchError);
+                setError("Unexpected error fetching patient information.");
+            }
+        };
 
         const fetchMedicalHistory = async () => {
             try {
@@ -45,6 +65,7 @@ const PatientMedHistory = () => {
             }
         };
 
+        fetchPatientInfo();
         fetchMedicalHistory();
     }, [patientId]);
 
@@ -52,7 +73,7 @@ const PatientMedHistory = () => {
         return <div>Error: {error}</div>;
     }
 
-    if (!medicalHistory) {
+    if (!medicalHistory || !patientInfo) {
         return <div>Loading medical history...</div>;
     }
 
@@ -81,6 +102,100 @@ const PatientMedHistory = () => {
                     <h1 style={{ fontSize: '24px' }}>Medical History</h1>
                 </div>
 
+                {/* Patient Information Table */}
+                <div style={{
+                    marginBottom: '20px',
+                    padding: '15px',
+                    backgroundColor: '#f9f9f9',
+                    borderRadius: '5px',
+                    border: '1px solid #ddd'
+                }}>
+                    <h2 style={{
+                        marginBottom: '10px',
+                        fontSize: '20px',
+                        textAlign: 'left'
+                    }}>Patient Information</h2>
+                    <table style={{
+                        width: '100%',
+                        borderCollapse: 'collapse'
+                    }}>
+                        <tbody>
+                            <tr>
+                                <td style={{
+                                    border: '1px solid #ddd',
+                                    padding: '8px',
+                                    fontWeight: 'bold',
+                                    textAlign: 'left',
+                                    backgroundColor: '#f2f2f2',
+                                    width: '40%'
+                                }}>Name</td>
+                                <td style={{
+                                    border: '1px solid #ddd',
+                                    padding: '8px',
+                                    textAlign: 'left'
+                                }}>{patientInfo.patient_name}</td>
+                            </tr>
+                            <tr>
+                                <td style={{
+                                    border: '1px solid #ddd',
+                                    padding: '8px',
+                                    fontWeight: 'bold',
+                                    textAlign: 'left',
+                                    backgroundColor: '#f2f2f2'
+                                }}>Date of Birth</td>
+                                <td style={{
+                                    border: '1px solid #ddd',
+                                    padding: '8px',
+                                    textAlign: 'left'
+                                }}>{new Date(patientInfo.dob).toLocaleDateString()}</td>
+                            </tr>
+                            <tr>
+                                <td style={{
+                                    border: '1px solid #ddd',
+                                    padding: '8px',
+                                    fontWeight: 'bold',
+                                    textAlign: 'left',
+                                    backgroundColor: '#f2f2f2'
+                                }}>Gender</td>
+                                <td style={{
+                                    border: '1px solid #ddd',
+                                    padding: '8px',
+                                    textAlign: 'left'
+                                }}>{patientInfo.gender}</td>
+                            </tr>
+                            <tr>
+                                <td style={{
+                                    border: '1px solid #ddd',
+                                    padding: '8px',
+                                    fontWeight: 'bold',
+                                    textAlign: 'left',
+                                    backgroundColor: '#f2f2f2'
+                                }}>Address</td>
+                                <td style={{
+                                    border: '1px solid #ddd',
+                                    padding: '8px',
+                                    textAlign: 'left'
+                                }}>{patientInfo.address}</td>
+                            </tr>
+                            <tr>
+                                <td style={{
+                                    border: '1px solid #ddd',
+                                    padding: '8px',
+                                    fontWeight: 'bold',
+                                    textAlign: 'left',
+                                    backgroundColor: '#f2f2f2'
+                                }}>Phone Number</td>
+                                <td style={{
+                                    border: '1px solid #ddd',
+                                    padding: '8px',
+                                    textAlign: 'left'
+                                }}>{patientInfo.phone_number}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                {/* Medical History Records */}
                 {medicalHistory.map((record, index) => (
                     <div key={index} style={{
                         marginBottom: '30px',
@@ -105,29 +220,12 @@ const PatientMedHistory = () => {
                             borderCollapse: 'collapse',
                             marginTop: '10px'
                         }}>
-                            <thead>
-                                <tr>
-                                    <th style={{
-                                        border: '1px solid #ddd',
-                                        padding: '8px',
-                                        backgroundColor: '#f2f2f2',
-                                        fontWeight: 'bold',
-                                        textAlign: 'left'
-                                    }}>Category</th>
-                                    <th style={{
-                                        border: '1px solid #ddd',
-                                        padding: '8px',
-                                        backgroundColor: '#f2f2f2',
-                                        fontWeight: 'bold',
-                                        textAlign: 'left'
-                                    }}>Details</th>
-                                </tr>
-                            </thead>
                             <tbody>
-                                <tr style={{ backgroundColor: '#f9f9f9' }}>
+                                <tr>
                                     <td style={{
                                         border: '1px solid #ddd',
                                         padding: '8px',
+                                        fontWeight: 'bold',
                                         textAlign: 'left'
                                     }}>Visit Date</td>
                                     <td style={{
@@ -136,10 +234,11 @@ const PatientMedHistory = () => {
                                         textAlign: 'left'
                                     }}>{new Date(record.visit_date).toLocaleDateString()}</td>
                                 </tr>
-                                <tr style={{ backgroundColor: '#f9f9f9' }}>
+                                <tr>
                                     <td style={{
                                         border: '1px solid #ddd',
                                         padding: '8px',
+                                        fontWeight: 'bold',
                                         textAlign: 'left'
                                     }}>Diagnosis</td>
                                     <td style={{
@@ -152,6 +251,7 @@ const PatientMedHistory = () => {
                                     <td style={{
                                         border: '1px solid #ddd',
                                         padding: '8px',
+                                        fontWeight: 'bold',
                                         textAlign: 'left'
                                     }}>Treatment</td>
                                     <td style={{
@@ -160,10 +260,11 @@ const PatientMedHistory = () => {
                                         textAlign: 'left'
                                     }}>{record.treatment}</td>
                                 </tr>
-                                <tr style={{ backgroundColor: '#f9f9f9' }}>
+                                <tr>
                                     <td style={{
                                         border: '1px solid #ddd',
                                         padding: '8px',
+                                        fontWeight: 'bold',
                                         textAlign: 'left'
                                     }}>Medications</td>
                                     <td style={{
@@ -176,6 +277,7 @@ const PatientMedHistory = () => {
                                     <td style={{
                                         border: '1px solid #ddd',
                                         padding: '8px',
+                                        fontWeight: 'bold',
                                         textAlign: 'left'
                                     }}>Notes</td>
                                     <td style={{

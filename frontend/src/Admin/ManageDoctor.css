@@ -118,3 +118,25 @@
   outline: none;
   box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.5);
 }
+
+/* Button for Medical History */
+.mngdocs-history-btn {
+  background-color: #3e8e41;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.mngdocs-history-btn:hover {
+  background-color: #34495e;
+}
+
+.mngdocs-history-btn:active {
+  background-color: #3e8e41;
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
+}

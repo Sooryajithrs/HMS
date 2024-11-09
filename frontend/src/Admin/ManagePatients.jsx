@@ -18,7 +18,7 @@ const ManagePatients = () => {
         setLoading(true);
         const { data, error } = await supabase
           .from('patient')
-          .select('patient_name, dob, gender, address, phone_number');
+          .select('patient_id, patient_name, dob, gender, address, phone_number');
 
         if (error) throw error;
         setPatients(data);
@@ -93,22 +93,31 @@ const ManagePatients = () => {
                   <th>Gender</th>
                   <th>Address</th>
                   <th>Contact</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredPatients.length > 0 ? (
-                  filteredPatients.map((patient, index) => (
-                    <tr key={index}>
+                  filteredPatients.map((patient) => (
+                    <tr key={patient.patient_id}>
                       <td>{patient.patient_name}</td>
                       <td>{patient.dob}</td>
                       <td>{patient.gender || 'N/A'}</td>
                       <td>{patient.address || 'N/A'}</td>
                       <td>{patient.phone_number || 'N/A'}</td>
+                      <td>
+                        <button
+                          className="mngdocs-history-btn"
+                          onClick={() => navigate(`/patientmedhistory/${patient.patient_id}`)}
+                        >
+                          Medical History
+                        </button>
+                      </td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="5">No patients found</td>
+                    <td colSpan="6">No patients found</td>
                   </tr>
                 )}
               </tbody>
