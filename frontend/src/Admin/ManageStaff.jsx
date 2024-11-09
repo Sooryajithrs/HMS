@@ -38,8 +38,7 @@ const ManageStaff = () => {
     fetchStaffs();
   }, []);
 
-  // Log staff data before filtering to ensure data is loaded
-  
+  // Filter the staff data based on the search term
   const filteredStaffs = staffs.filter(
     (staff) =>
       staff.staff_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -47,18 +46,27 @@ const ManageStaff = () => {
       (staff.phone_number && staff.phone_number.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
-  // Log filtered staff data for debugging
-  
   // Navigate to add staff page
   const handleAddStaff = () => {
     navigate(`/addstaff`);
   };
 
   // Handle delete staff
-  const handleDeleteStaff = async (staffId) => {
+  const handleDeleteStaff = async (staffId, staffName, role) => {
     const confirmed = window.confirm("Are you sure you want to delete this staff member?");
     if (confirmed) {
       try {
+        // If the staff role is "Receptionist", also delete the user from the users table
+        if (role === 'Receptionist') {
+          const { error: userDeleteError } = await supabase
+            .from('users')
+            .delete()
+            .eq('username', staffName);  // Assuming 'staff_name' is used as 'username' for Receptionists in the 'users' table
+
+          if (userDeleteError) throw userDeleteError;
+        }
+
+        // Delete staff from the 'staffs' table using staff_id
         const { error } = await supabase
           .from('staffs')
           .delete()
@@ -86,9 +94,9 @@ const ManageStaff = () => {
           <button onClick={() => navigate(`/admindashboard/${userId}`)}>Dashboard</button>
           <button onClick={() => navigate(`/managedoctor/${userId}`)}>Manage Doctors</button>
           <button onClick={() => navigate(`/managepatients/${userId}`)}>Manage Patients</button>
+          <button className="active" onClick={() => navigate(`/managestaff/${userId}`)}>Manage Staffs</button>
           <button onClick={() => navigate(`/manageappointments/${userId}`)}>Manage Appointments</button>
           <button onClick={() => navigate(`/managedocschedules/${userId}`)}>Manage Doctor Schedules</button>
-          <button className="active" onClick={() => navigate(`/managestaff/${userId}`)}>Manage Staffs</button>
           <button onClick={() => navigate(`/adminsettings/${userId}`)}>Change Password</button>
           <button onClick={() => navigate(`/login`)}>Sign Out</button>
         </nav>
@@ -138,7 +146,7 @@ const ManageStaff = () => {
                       <td>{staff.phone_number || 'N/A'}</td>
                       <td>
                         <button 
-                          onClick={() => handleDeleteStaff(staff.staff_id)} 
+                          onClick={() => handleDeleteStaff(staff.staff_id, staff.staff_name, staff.role)} 
                           className="mngdocs-delete-button"
                         >
                           Remove

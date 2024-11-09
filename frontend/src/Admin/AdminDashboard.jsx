@@ -9,6 +9,7 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(true); // Loading state
   const [adminName, setAdminName] = useState(''); // State for admin name
   const [doctorCount, setDoctorCount] = useState(0); // State for doctor count
+  const [staffCount, setStaffCount] = useState(0);
   const [patientCount, setPatientCount] = useState(0); // State for patient count
   const [appointmentCount, setAppointmentCount] = useState(0); // State for appointment count
   const [reportCount] = useState(10); // Set report count as a constant value
@@ -34,11 +35,15 @@ const AdminDashboard = () => {
         const { count: patientsCount } = await supabase
           .from('patient')
           .select('*', { count: 'exact' });
+        const { count: staffsCount } = await supabase
+          .from('staffs')
+          .select('*', { count: 'exact' });
         const { count: appointmentsCount } = await supabase
           .from('appointments')
           .select('*', { count: 'exact' });
         
         setDoctorCount(doctorsCount);
+        setStaffCount(staffsCount);
         setPatientCount(patientsCount);
         setAppointmentCount(appointmentsCount);
       } catch (error) {
@@ -88,9 +93,9 @@ const AdminDashboard = () => {
           <button onClick={() => navigate(`/admindashboard/${userId}`)}>Dashboard</button>
           <button onClick={handleManageDoctors}>Manage Doctors</button>
           <button onClick={handleManagePatients}>Manage Patients</button>
+          <button onClick={handleManageStaffs}>Manage Staffs</button>
           <button onClick={handleManageAppointments}>Manage Appointments</button>
           <button onClick={handleManageDocSchedules}>Manage Doctor Schedules</button>
-          <button onClick={handleManageStaffs}>Manage Staffs</button>
           <button onClick={handleSettings}>Change Password</button>
           <button onClick={handleSignOut}>Sign Out</button>
         </nav>
@@ -116,7 +121,7 @@ const AdminDashboard = () => {
           </div>
           <div className="admindashboard-statBox">
             <h3>Staffs</h3>
-            <p>{reportCount}</p> {/* Display the constant report count */}
+            <p>{staffCount}</p>
           </div>
         </section>
       </main>

@@ -94,9 +94,9 @@ const ManageDocSchedules = () => {
           <button onClick={() => navigate(`/admindashboard/${userId}`)}>Dashboard</button>
           <button onClick={() => navigate(`/managedoctor/${userId}`)}>Manage Doctors</button>
           <button onClick={() => navigate(`/managepatients/${userId}`)}>Manage Patients</button>
+          <button onClick={() => navigate(`/managestaff/${userId}`)}>Manage Staffs</button>
           <button onClick={() => navigate(`/manageappointments/${userId}`)}>Manage Appointments</button>
           <button className="active" onClick={() => navigate(`/managedocschedules/${userId}`)}>Manage Doctor Schedules</button>
-          <button onClick={() => navigate(`/managestaff/${userId}`)}>Manage Staffs</button>
           <button onClick={() => navigate(`/adminsettings/${userId}`)}>Change Password</button>
           <button onClick={() => navigate(`/login`)}>Sign Out</button>
         </nav>
