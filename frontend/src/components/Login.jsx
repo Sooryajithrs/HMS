@@ -60,6 +60,9 @@ function Login() {
                 case 'Patient':
                     navigate(`/patientdashboard/${user.user_id}`);
                     break;
+                case 'Receptionist':
+                    navigate(`/receptionistdashboard/${user.user_id}`);
+                    break;
                 default:
                     setError('Please select a valid role.');
             }
@@ -86,6 +89,7 @@ function Login() {
                             <option value="Admin">Admin</option>
                             <option value="Doctor">Doctor</option>
                             <option value="Patient">Patient</option>
+                            <option value="Receptionist">Receptionist</option>
                         </select>
                     </div>
                     <div className="login-form-group">

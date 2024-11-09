@@ -1,0 +1,116 @@
+/* ReceptionistDashboard.css */
+
+/* Container for the entire receptionist dashboard */
+.receptionistdashboard-container {
+  display: flex;
+  height: 100vh;
+  font-family: 'Times New Roman', Times, serif; /* Matches your project font preference */
+}
+
+/* Sidebar styles for the receptionist dashboard */
+.receptionistdashboard-sidebar {
+  width: 225px;
+  background-color: #000000; /* Dark sidebar background */
+  color: white;
+  padding: 20px;
+}
+
+/* Heading inside the sidebar */
+.receptionistdashboard-sidebar h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Navigation button styles inside sidebar */
+.receptionistdashboard-sidebar nav {
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Styling buttons inside the sidebar */
+.receptionistdashboard-sidebar button {
+  background: none; /* Remove default button background */
+  border: none; /* Remove default button border */
+  padding: 16px 32px; /* Padding for button */
+  font-size: large; /* Set font size */
+  color: #FFFFFF; /* Set text color */
+  cursor: pointer; /* Change cursor to pointer */
+  transition: background 0.3s; /* Smooth background color transition */
+  width: 100%; /* Make buttons fill full width */
+  text-align: center; /* Align text to the left */
+}
+
+/* Hover effect for buttons */
+.receptionistdashboard-sidebar button:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+}
+
+/* Main content area for the receptionist dashboard */
+.receptionistdashboard-mainContent {
+  flex: 1;
+  padding: 20px;
+  background-color: #ecf0f1; /* Light background for main content */
+  overflow-y: auto; /* Enable scrolling if content overflows */
+}
+
+/* Header for the main content */
+.receptionistdashboard-header {
+  margin-bottom: 20px;
+  display: flex;
+  font-size: x-large;
+  justify-content: center;
+}
+
+/* Stats container in the receptionist dashboard */
+.receptionistdashboard-stats {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Allow the boxes to wrap on smaller screens */
+}
+
+/* Individual stat boxes */
+.receptionistdashboard-statBox {
+  flex: 1; /* Each stat box takes equal space */
+  margin: 10px;
+  margin-top: 0;
+  padding: 10px;
+  background-color: #2980b9; /* Background color for stat boxes */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  text-align: center;
+}
+
+/* Heading style inside stat boxes */
+.receptionistdashboard-statBox h3 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  color: black;
+}
+
+/* Paragraph style inside stat boxes */
+.receptionistdashboard-statBox p {
+  font-size: 2em;
+  font-weight: bold;
+  color: black; /* Dark color for the counts */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .receptionistdashboard-container {
+    flex-direction: column; /* Stack sidebar and main content on smaller screens */
+  }
+
+  .receptionistdashboard-sidebar {
+    width: 100%; /* Full width on mobile */
+    padding: 10px;
+  }
+
+  .receptionistdashboard-mainContent {
+    padding: 10px;
+  }
+
+  .receptionistdashboard-statBox {
+    flex: 1 1 calc(50% - 20px); /* Two boxes per row */
+  }
+}

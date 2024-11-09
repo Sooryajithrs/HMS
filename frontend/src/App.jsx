@@ -6,6 +6,9 @@ import Signup from './components/Signup';
 import Forgotpassword from './components/Forgotpassword';
 import { supabase } from './supabaseClient'; 
 import DoctorDashboard from './Doctor/Doctordashboard';
+import ReceptionistDashboard from './Receptionist/ReceptionistDashboard';
+import ScheduledAppointments from './Receptionist/ScheduledAppointments';
+import AddPatient from './Receptionist/AddPatient';
 import PatientDashboard from './Patient/PatientDashboard';
 import DocSettings from './Doctor/DocSettings'; 
 import PatientSettings from './Patient/Patientsettings';
@@ -39,8 +42,11 @@ function App() {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/forgotpassword" element={<Forgotpassword />} />
                 <Route path="/doctordashboard/:userId" element={<DoctorDashboard />} />
+                <Route path="/scheduledappointments/:userId" element={<ScheduledAppointments />} />
                 <Route path="/patientdashboard/:userId" element={<PatientDashboard />} />
                 <Route path="/admindashboard/:userId" element={<AdminDashboard />} />
+                <Route path="/receptionistdashboard/:userId" element={<ReceptionistDashboard />} />
+                <Route path="/addpatient/:userId" element={<AddPatient/>} />
                 <Route path="/managedoctor/:userId" element={<ManageDoctor />} />
                 <Route path="/managestaff/:userId" element={<ManageStaff />} />
                 <Route path="/managedocschedules/:userId" element={<ManageDocSchedules />} />

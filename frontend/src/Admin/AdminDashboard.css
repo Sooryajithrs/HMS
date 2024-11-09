@@ -112,3 +112,14 @@
     flex: 1 1 calc(50% - 20px); /* Two boxes per row */
   }
 }
+
+.mngdocs-date-filter-section {
+  margin-bottom: 20px;
+}
+
+.mngdocs-date-filter-input {
+  padding: 8px;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 300px;
+}

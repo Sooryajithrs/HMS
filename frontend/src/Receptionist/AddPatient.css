@@ -1,0 +1,49 @@
+
+.addpatient-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 20px;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.addpatient-form div {
+  display: flex;
+  flex-direction: column;
+}
+
+.addpatient-form label {
+  margin-bottom: 5px;
+  font-size: 1.1em;
+  color: #555;
+}
+
+.addpatient-form input,
+.addpatient-form select,
+.addpatient-form textarea,
+.addpatient-form button {
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.addpatient-form textarea {
+  resize: vertical;
+  height: 80px;
+}
+
+.addpatient-form button {
+  grid-column: span 2; /* Make the button span across the form */
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.addpatient-form button:hover {
+  background-color: #2980b9;
+}
