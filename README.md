@@ -25,13 +25,13 @@ Hospital Management System made for a DBMS course project. Hospitals interact wi
 5. Doctors can modify diagnoses and prescriptions.
 
 ### Admin Side Features
-1.Separate interface and login for admin.
-2.Displays a quick overview of key statistics, such as the total number of doctors, patients, appointments, and staff.
-3.Admins can add or remove doctors from the system.
-4.Admins can view patient profiles and records.
-5.Admins can manage hospital staff such as pharmacists, receptionists, and other non-medical personnel.
-6.Admins can view or cancel appointments if necessary.
-7.Admins can view and edit doctor schedules to ensure proper management of hospital operations.
+1. Separate interface and login for admin.
+2. Displays a quick overview of key statistics, such as the total number of doctors, patients, appointments, and staff.
+3. Admins can add or remove doctors from the system.
+4. Admins can view patient profiles and records.
+5. Admins can manage hospital staff such as pharmacists, receptionists, and other non-medical personnel.
+6. Admins can view or cancel appointments if necessary.
+7. Admins can view and edit doctor schedules to ensure proper management of hospital operations.
 
 ### Receptionist Side Features
 1. Separate interface and login for receptionists.
