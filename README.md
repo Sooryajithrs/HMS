@@ -24,6 +24,23 @@ Hospital Management System made for a DBMS course project. Hospitals interact wi
 4. Doctors can provide diagnoses and prescriptions.
 5. Doctors can modify diagnoses and prescriptions.
 
+### Admin Side Features
+1.Separate interface and login for admin.
+2.Displays a quick overview of key statistics, such as the total number of doctors, patients, appointments, and staff.
+3.Admins can add or remove doctors from the system.
+4.Admins can view patient profiles and records.
+5.Admins can manage hospital staff such as pharmacists, receptionists, and other non-medical personnel.
+6.Admins can view or cancel appointments if necessary.
+7.Admins can view and edit doctor schedules to ensure proper management of hospital operations.
+
+### Receptionist Side Features
+1. Separate interface and login for receptionists.
+2. View and manage all scheduled appointments for the current day.
+3. Add new patient profiles and register them in the system.
+4. Monitor statuses of appointments (e.g., pending, rejected, completed).
+5. View counts of total registered patients, scheduled appointments, pending or rejected appointments, and completed appointments for    the current day.
+
+
 ## Instructions to Run
 1. Run `npm install` in the frontend directory.
 2. Run `npm run dev` in the frontend directory.
